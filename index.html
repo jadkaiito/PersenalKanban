@@ -10,6 +10,14 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#37353E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Personal Kanban">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
     <style>
         .auth-container {
             transition: all 0.3s ease;
@@ -248,6 +256,59 @@
                 // User is signed in, redirect to TodoWeb
                 window.location.href = 'TodoWeb.html';
             }
+        });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                .then((registration) => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch((registrationError) => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+
+        // Handle install prompt
+        let deferredPrompt;
+        const installBtn = document.createElement('button');
+        installBtn.className = 'fixed bottom-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hidden';
+        installBtn.innerHTML = '<i class="fas fa-download mr-2"></i>Install App';
+        document.body.appendChild(installBtn);
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install button
+            installBtn.classList.remove('hidden');
+            
+            installBtn.addEventListener('click', () => {
+                // Hide the install button
+                installBtn.classList.add('hidden');
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        });
+
+        window.addEventListener('appinstalled', () => {
+            // Hide the install button
+            installBtn.classList.add('hidden');
+            // Clear the deferredPrompt so it can be garbage collected
+            deferredPrompt = null;
+            console.log('PWA was installed');
         });
     </script>
 </body>
