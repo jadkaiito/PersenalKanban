@@ -2,7 +2,7 @@
   "name": "Personal Kanban",
   "short_name": "Kanban",
   "description": "A personal Kanban board for task management",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#37353E",
   "theme_color": "#37353E",
