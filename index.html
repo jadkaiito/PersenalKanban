@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker | Auth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+    <style>
+        .auth-container {
+            transition: all 0.3s ease;
+        }
+        .auth-tab {
+            transition: all 0.2s ease;
+        }
+        .auth-tab:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .input-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+    <div class="auth-container bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-md">
+        <!-- Tabs -->
+        <div class="flex border-b">
+            <button id="login-tab" class="auth-tab active flex-1 py-4 px-6 text-center font-medium text-blue-600 bg-blue-50">
+                <i class="fas fa-sign-in-alt mr-2"></i>Login
+            </button>
+            <button id="register-tab" class="auth-tab flex-1 py-4 px-6 text-center font-medium text-gray-500 hover:text-gray-700">
+                <i class="fas fa-user-plus mr-2"></i>Register
+            </button>
+        </div>
+        
+        <!-- Login Form -->
+        <div id="login-form" class="p-6">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="login-email">
+                    <i class="fas fa-envelope mr-2"></i>Email
+                </label>
+                <input type="email" id="login-email" class="input-field w-full px-3 py-2 border rounded-lg focus:border-blue-500" placeholder="your@email.com">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="login-password">
+                    <i class="fas fa-lock mr-2"></i>Password
+                </label>
+                <input type="password" id="login-password" class="input-field w-full px-3 py-2 border rounded-lg focus:border-blue-500" placeholder="••••••••">
+            </div>
+            <button id="login-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150">
+                <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+            </button>
+            <div class="mt-4 text-center">
+                <button id="google-login" class="text-gray-700 hover:text-blue-600 font-medium">
+                    <i class="fab fa-google mr-2"></i>Sign in with Google
+                </button>
+            </div>
+            <div class="mt-4 text-center text-sm text-gray-600">
+                <a href="#" class="hover:text-blue-600">Forgot password?</a>
+            </div>
+        </div>
+        
+        <!-- Register Form (Hidden by default) -->
+        <div id="register-form" class="p-6 hidden">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="register-name">
+                    <i class="fas fa-user mr-2"></i>Full Name
+                </label>
+                <input type="text" id="register-name" class="input-field w-full px-3 py-2 border rounded-lg focus:border-blue-500" placeholder="John Doe">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="register-email">
+                    <i class="fas fa-envelope mr-2"></i>Email
+                </label>
+                <input type="email" id="register-email" class="input-field w-full px-3 py-2 border rounded-lg focus:border-blue-500" placeholder="your@email.com">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="register-password">
+                    <i class="fas fa-lock mr-2"></i>Password
+                </label>
+                <input type="password" id="register-password" class="input-field w-full px-3 py-2 border rounded-lg focus:border-blue-500" placeholder="••••••••">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="register-confirm-password">
+                    <i class="fas fa-lock mr-2"></i>Confirm Password
+                </label>
+                <input type="password" id="register-confirm-password" class="input-field w-full px-3 py-2 border rounded-lg focus:border-blue-500" placeholder="••••••••">
+            </div>
+            <button id="register-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150">
+                <i class="fas fa-user-plus mr-2"></i>Create Account
+            </button>
+            <div class="mt-4 text-center text-sm text-gray-600">
+                By registering, you agree to our <a href="#" class="text-blue-600 hover:underline">Terms</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+            </div>
+        </div>
+        
+        <!-- Status Message -->
+        <div id="status-message" class="hidden px-6 py-3 text-sm rounded-b-lg"></div>
+    </div>
+
+    <script>
+        // Firebase Configuration (Replace with your config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhLX2bfl2sNK0bCTbDR5eoB2Ssskv2M_U",
+            authDomain: "personal-kandan.firebaseapp.com",
+            projectId: "personal-kandan",
+            storageBucket: "personal-kandan.firebasestorage.app",
+            messagingSenderId: "1042051090565",
+            appId: "1:1042051090565:web:5da62b0de9cc16328a41ec",
+            measurementId: "G-GKPWJE2NTM"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // DOM Elements
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const googleLoginBtn = document.getElementById('google-login');
+        const statusMessage = document.getElementById('status-message');
+
+        // Tab Switching
+        loginTab.addEventListener('click', () => {
+            loginTab.classList.add('active', 'text-blue-600', 'bg-blue-50');
+            loginTab.classList.remove('text-gray-500');
+            registerTab.classList.remove('active', 'text-blue-600', 'bg-blue-50');
+            registerTab.classList.add('text-gray-500');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        });
+
+        registerTab.addEventListener('click', () => {
+            registerTab.classList.add('active', 'text-blue-600', 'bg-blue-50');
+            registerTab.classList.remove('text-gray-500');
+            loginTab.classList.remove('active', 'text-blue-600', 'bg-blue-50');
+            loginTab.classList.add('text-gray-500');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+
+        // Show status message
+        function showStatus(message, isError = false) {
+            statusMessage.textContent = message;
+            statusMessage.className = isError ? 
+                'px-6 py-3 text-sm rounded-b-lg bg-red-100 text-red-700' : 
+                'px-6 py-3 text-sm rounded-b-lg bg-green-100 text-green-700';
+            statusMessage.classList.remove('hidden');
+            
+            setTimeout(() => {
+                statusMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Email/Password Login
+        loginBtn.addEventListener('click', () => {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (!email || !password) {
+                showStatus('Please fill in all fields', true);
+                return;
+            }
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    showStatus('Login successful! Redirecting...');
+                    // Redirect to TodoWeb page
+                    setTimeout(() => {
+                        window.location.href = 'TodoWeb.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    showStatus(error.message, true);
+                });
+        });
+
+        // Registration
+        registerBtn.addEventListener('click', () => {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            
+            if (!name || !email || !password || !confirmPassword) {
+                showStatus('Please fill in all fields', true);
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showStatus('Passwords do not match', true);
+                return;
+            }
+            
+            if (password.length < 6) {
+                showStatus('Password should be at least 6 characters', true);
+                return;
+            }
+            
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed up
+                    return userCredential.user.updateProfile({
+                        displayName: name
+                    }).then(() => {
+                        showStatus('Registration successful! Redirecting...');
+                        // Redirect to TodoWeb page
+                        setTimeout(() => {
+                            window.location.href = 'TodoWeb.html';
+                        }, 1500);
+                    });
+                })
+                .catch((error) => {
+                    showStatus(error.message, true);
+                });
+        });
+
+        // Google Sign-In
+        googleLoginBtn.addEventListener('click', () => {
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // Signed in with Google
+                    showStatus('Login successful! Redirecting...');
+                    // Redirect to TodoWeb page
+                    setTimeout(() => {
+                        window.location.href = 'TodoWeb.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    showStatus(error.message, true);
+                });
+        });
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in, redirect to TodoWeb
+                window.location.href = 'TodoWeb.html';
+            }
+        });
+    </script>
+</body>
+</html>
