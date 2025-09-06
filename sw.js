@@ -1,7 +1,7 @@
 const CACHE_NAME = 'personal-kanban-v1';
 const urlsToCache = [
   '/',
-  '/TodoWeb - Copy.html',
+  '/TodoWeb.html',
   'https://cdn.tailwindcss.com',
   'https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js',
   'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js',
