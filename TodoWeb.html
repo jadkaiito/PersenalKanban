@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark Personal Kanban</title>
     
+    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#37353E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,6 +14,7 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -23,10 +25,6 @@
             padding: 0;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
             background: #37353E;
@@ -79,7 +77,7 @@
             padding: 12px;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease; /* SMOOTHER TRANSITION */
+            transition: all 0.2s ease;
         }
         
         .list-header {
@@ -98,7 +96,6 @@
             padding: 4px;
             margin-bottom: 12px;
             min-height: 50px;
-            transition: background-color 0.3s ease; /* SMOOTHER TRANSITION */
         }
         
         /* Cards */
@@ -109,7 +106,7 @@
             margin-bottom: 8px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: all 0.3s ease; /* SMOOTHER TRANSITION */
+            transition: all 0.2s ease;
             position: relative;
             display: flex;
             align-items: flex-start;
@@ -117,8 +114,7 @@
         
         .card:hover {
             background: #7D6565;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ENHANCED HOVER */
-            transform: translateY(-2px); /* ENHANCED HOVER */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
         
         .card-content {
@@ -151,14 +147,9 @@
             border-radius: 4px;
             cursor: pointer;
             border: none;
-            transition: all 0.2s ease; /* SMOOTHER TRANSITION */
+            transition: all 0.2s;
         }
         
-        .btn:hover {
-            transform: translateY(-1px); /* ENHANCED HOVER */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* ENHANCED HOVER */
-        }
-
         .btn-primary {
             background: #715A5A;
             color: #D3DAD9;
@@ -184,12 +175,10 @@
             cursor: pointer;
             border: none;
             background: none;
-            transition: all 0.2s ease;
         }
         
         .btn-icon:hover {
             background: rgba(211, 218, 217, 0.1);
-            transform: scale(1.1); /* ENHANCED HOVER */
         }
         
         /* Add card/list form */
@@ -219,9 +208,9 @@
         
         /* Drag and drop */
         .dragging {
-            opacity: 0.9; /* Made less transparent */
-            transform: rotate(3deg) scale(1.05); /* ENHANCED DRAG EFFECT */
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* ENHANCED DRAG EFFECT */
+            opacity: 0.6;
+            transform: rotate(4deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .drag-over {
@@ -321,7 +310,6 @@
             border-radius: 4px;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: all 0.2s ease; /* SMOOTHER TRANSITION */
         }
         
         .color-option:hover {
@@ -335,7 +323,7 @@
         
         /* Modal */
         .modal {
-            display: none; /* Changed from none to flex by JS */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -345,15 +333,6 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            opacity: 0; /* NEW: for animation */
-            transition: opacity 0.3s ease; /* NEW: for animation */
-        }
-        .modal.show {
-            display: flex;
-            opacity: 1; /* NEW: for animation */
-        }
-        .modal.show .modal-content {
-            transform: scale(1); /* NEW: for animation */
         }
         
         .modal-content {
@@ -365,8 +344,6 @@
             max-height: 90vh;
             overflow-y: auto;
             color: #D3DAD9;
-            transform: scale(0.95); /* NEW: for animation */
-            transition: transform 0.3s ease; /* NEW: for animation */
         }
         
         /* Label styles */
@@ -655,14 +632,13 @@
         
         /* List dragging styles */
         .list-dragging {
-            opacity: 0.9;
-            transform: rotate(2deg) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
-            background-color: #4a4852;
+            opacity: 0.6;
+            transform: rotate(4deg);
         }
         
         .list-drag-over {
-            transform: scale(1.02);
+            background: rgba(113, 90, 90, 0.3);
+            border: 2px dashed #715A5A;
         }
         
         /* NEW: Round checkbox for cards (Trello-style) */
@@ -957,11 +933,13 @@
     </style>
 </head>
 <body>
+    <!-- Install App Button -->
     <div id="installBtn" class="install-btn">
         <i data-feather="download"></i> Install App
     </div>
     
     <div class="app-container">
+        <!-- Header -->
         <div class="header">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">
@@ -987,14 +965,18 @@
             </div>
         </div>
         
+        <!-- Board -->
         <div id="board" class="board">
-            </div>
+            <!-- Lists will be added here -->
+        </div>
     </div>
 
+    <!-- Trash Bin for Drag and Drop Deletion -->
     <div id="trash-bin" class="trash-bin">
         <i data-feather="trash-2" class="w-6 h-6"></i>
     </div>
 
+    <!-- Boards Modal (Trello-style) -->
     <div id="boards-modal" class="modal">
         <div class="modal-content boards-modal-content">
             <div class="boards-modal-header">
@@ -1007,7 +989,8 @@
             </div>
             
             <div class="boards-grid" id="boards-grid">
-                </div>
+                <!-- Board cards will be dynamically added here -->
+            </div>
             
             <div class="flex justify-center py-4">
                 <button id="create-board-modal-btn" class="btn btn-primary">
@@ -1017,6 +1000,7 @@
         </div>
     </div>
 
+    <!-- Create Board Modal -->
     <div id="create-board-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1044,9 +1028,6 @@
                     <div class="color-option" style="background: #4bbf6b;" data-color="#4bbf6b"></div>
                     <div class="color-option" style="background: #00aecc;" data-color="#00aecc"></div>
                     <div class="color-option" style="background: #838c91;" data-color="#838c91"></div>
-                    <div class="color-option" style="background: #4d668c;" data-color="#4d668c"></div>
-                    <div class="color-option" style="background: #947a54;" data-color="#947a54"></div>
-                    <div class="color-option" style="background: #a45d8a;" data-color="#a45d8a"></div>
                 </div>
             </div>
             <button id="create-board-btn" class="btn btn-primary w-full">
@@ -1055,6 +1036,7 @@
         </div>
     </div>
 
+    <!-- Recycle Bin Modal -->
     <div id="recycle-bin-modal" class="modal">
         <div class="modal-content" style="max-width: 600px;">
             <div class="flex justify-between items-center mb-4">
@@ -1073,6 +1055,7 @@
         </div>
     </div>
 
+    <!-- List Options Modal -->
     <div id="list-options-modal" class="modal list-options-modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -1112,6 +1095,7 @@
         </div>
     </div>
 
+    <!-- Card Options Modal -->
     <div id="card-options-modal" class="modal">
         <div class="modal-content card-modal-minimal">
             <div class="card-modal-header flex justify-between items-center">
@@ -1145,7 +1129,8 @@
                     </button>
                 </div>
                 <div id="label-options" class="label-options-minimal">
-                    </div>
+                    <!-- Labels will be added dynamically -->
+                </div>
             </div>
             
             <div class="card-modal-section">
@@ -1161,6 +1146,7 @@
         </div>
     </div>
 
+    <!-- Add Label Modal -->
     <div id="add-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1178,18 +1164,18 @@
             <div class="mb-4">
                 <label class="block text-sm font-medium mb-2">Label Color</label>
                 <div class="color-options">
-                    <div class="color-option selected" style="background: #519839;" data-color="#519839"></div>
-                    <div class="color-option" style="background: #d29034;" data-color="#d29034"></div>
-                    <div class="color-option" style="background: #b04632;" data-color="#b04632"></div>
-                    <div class="color-option" style="background: #89609e;" data-color="#89609e"></div>
-                    <div class="color-option" style="background: #0079bf;" data-color="#0079bf"></div>
-                    <div class="color-option" style="background: #4bbf6b;" data-color="#4bbf6b"></div>
-                    <div class="color-option" style="background: #cd5a91;" data-color="#cd5a91"></div>
-                    <div class="color-option" style="background: #00aecc;" data-color="#00aecc"></div>
-                    <div class="color-option" style="background: #838c91;" data-color="#838c91"></div>
-                    <div class="color-option" style="background: #4d668c;" data-color="#4d668c"></div>
-                    <div class="color-option" style="background: #947a54;" data-color="#947a54"></div>
-                    <div class="color-option" style="background: #a45d8a;" data-color="#a45d8a"></div>
+                    <div class="color-option selected" style="background: #44444E;" data-color="#44444E"></div>
+                    <div class="color-option" style="background: #5A4E4E;" data-color="#5A4E4E"></div>
+                    <div class="color-option" style="background: #4E5A4E;" data-color="#4E5A4E"></div>
+                    <div class="color-option" style="background: #4E4E5A;" data-color="#4E4E5A"></div>
+                    <div class="color-option" style="background: #5A4E5A;" data-color="#5A4E5A"></div>
+                    <div class="color-option" style="background: #4E5A5A;" data-color="#4E5A5A"></div>
+                    <div class="color-option" style="background: #5A5A4E;" data-color="#5A5A4E"></div>
+                    <div class="color-option" style="background: #3E3E3E;" data-color="#3E3E3E"></div>
+                    <div class="color-option" style="background: #715A5A;" data-color="#715A5A"></div>
+                    <div class="color-option" style="background: #5A715A;" data-color="#5A715A"></div>
+                    <div class="color-option" style="background: #5A5A71;" data-color="#5A5A71"></div>
+                    <div class="color-option" style="background: #eb5a46;" data-color="#eb5a46"></div>
                 </div>
             </div>
             
@@ -1200,6 +1186,7 @@
         </div>
     </div>
 
+    <!-- Edit Label Modal -->
     <div id="edit-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1217,18 +1204,18 @@
             <div class="mb-4">
                 <label class="block text-sm font-medium mb-2">Label Color</label>
                 <div class="color-options" id="edit-label-color-options">
-                     <div class="color-option selected" style="background: #519839;" data-color="#519839"></div>
-                    <div class="color-option" style="background: #d29034;" data-color="#d29034"></div>
-                    <div class="color-option" style="background: #b04632;" data-color="#b04632"></div>
-                    <div class="color-option" style="background: #89609e;" data-color="#89609e"></div>
-                    <div class="color-option" style="background: #0079bf;" data-color="#0079bf"></div>
-                    <div class="color-option" style="background: #4bbf6b;" data-color="#4bbf6b"></div>
-                    <div class="color-option" style="background: #cd5a91;" data-color="#cd5a91"></div>
-                    <div class="color-option" style="background: #00aecc;" data-color="#00aecc"></div>
-                    <div class="color-option" style="background: #838c91;" data-color="#838c91"></div>
-                    <div class="color-option" style="background: #4d668c;" data-color="#4d668c"></div>
-                    <div class="color-option" style="background: #947a54;" data-color="#947a54"></div>
-                    <div class="color-option" style="background: #a45d8a;" data-color="#a45d8a"></div>
+                    <div class="color-option selected" style="background: #44444E;" data-color="#44444E"></div>
+                    <div class="color-option" style="background: #5A4E4E;" data-color="#5A4E4E"></div>
+                    <div class="color-option" style="background: #4E5A4E;" data-color="#4E5A4E"></div>
+                    <div class="color-option" style="background: #4E4E5A;" data-color="#4E4E5A"></div>
+                    <div class="color-option" style="background: #5A4E5A;" data-color="#5A4E5A"></div>
+                    <div class="color-option" style="background: #4E5A5A;" data-color="#4E5A5A"></div>
+                    <div class="color-option" style="background: #5A5A4E;" data-color="#5A5A4E"></div>
+                    <div class="color-option" style="background: #3E3E3E;" data-color="#3E3E3E"></div>
+                    <div class="color-option" style="background: #715A5A;" data-color="#715A5A"></div>
+                    <div class="color-option" style="background: #5A715A;" data-color="#5A715A"></div>
+                    <div class="color-option" style="background: #5A5A71;" data-color="#5A5A71"></div>
+                    <div class="color-option" style="background: #eb5a46;" data-color="#eb5a46"></div>
                 </div>
             </div>
             
@@ -1239,6 +1226,7 @@
         </div>
     </div>
 
+    <!-- Manage Labels Modal -->
     <div id="manage-labels-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1250,7 +1238,8 @@
             
             <div class="mb-4">
                 <div id="labels-list" class="space-y-2">
-                    </div>
+                    <!-- Labels will be added dynamically -->
+                </div>
             </div>
             
             <div class="flex justify-end gap-2">
@@ -1260,6 +1249,7 @@
         </div>
     </div>
 
+    <!-- Delete Confirmation Modal -->
     <div id="delete-confirm-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1280,6 +1270,7 @@
         </div>
     </div>
 
+    <!-- Context Menu -->
     <div id="context-menu" class="context-menu">
         <button class="edit-card-btn">
             <i data-feather="edit-2" class="w-4 h-4"></i> Edit
@@ -1357,21 +1348,6 @@
     // Card listeners for each list
     let cardListeners = {};
 
-    // --- MODAL HELPER FUNCTIONS ---
-    function showModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.add('show');
-        }
-    }
-
-    function hideModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.remove('show');
-        }
-    }
-
     function initializeApp() {
         // Set up realtime listeners for Firestore data
         setupFirestoreListeners();
@@ -1420,10 +1396,9 @@
             });
         
         // Listen for lists in the current board
-        // **FIX**: Added .orderBy('position') to fetch lists in the correct order
         listsUnsubscribe = db.collection('users').doc(currentUser.uid)
             .collection('boards').doc(currentBoardId)
-            .collection('lists').orderBy('position').onSnapshot((snapshot) => {
+            .collection('lists').onSnapshot((snapshot) => {
                 const listsData = { lists: [] };
                 snapshot.forEach((doc) => {
                     listsData.lists.push({ id: doc.id, ...doc.data() });
@@ -1853,8 +1828,7 @@
     }
     
     function showListOptionsModal(listElement) {
-        const modalId = 'list-options-modal';
-        const modal = document.getElementById(modalId);
+        const modal = document.getElementById('list-options-modal');
         const titleInput = document.getElementById('list-title-input');
         const title = listElement.querySelector('.list-header h3').textContent;
         
@@ -1862,10 +1836,8 @@
         
         // Set current color as selected
         const currentColor = listElement.style.backgroundColor;
-        document.querySelectorAll(`#${modalId} .color-option`).forEach(option => {
-            // Convert rgb to hex for comparison if needed
-            const optionColor = option.getAttribute('data-color');
-            if (optionColor === currentColor) {
+        document.querySelectorAll('#list-options-modal .color-option').forEach(option => {
+            if (option.getAttribute('data-color') === currentColor) {
                 option.classList.add('selected');
             } else {
                 option.classList.remove('selected');
@@ -1873,9 +1845,9 @@
         });
         
         // Add event listeners to color options
-        document.querySelectorAll(`#${modalId} .color-option`).forEach(option => {
+        document.querySelectorAll('#list-options-modal .color-option').forEach(option => {
             option.addEventListener('click', () => {
-                document.querySelectorAll(`#${modalId} .color-option`).forEach(opt => {
+                document.querySelectorAll('#list-options-modal .color-option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
                 option.classList.add('selected');
@@ -1887,7 +1859,7 @@
         saveBtn.onclick = () => {
             const listId = listElement.getAttribute('data-list-id');
             const newTitle = titleInput.value;
-            const selectedColor = document.querySelector(`#${modalId} .color-option.selected`).getAttribute('data-color');
+            const selectedColor = document.querySelector('#list-options-modal .color-option.selected').getAttribute('data-color');
             
             // Update list in Firestore
             db.collection('users').doc(currentUser.uid)
@@ -1898,7 +1870,7 @@
                     color: selectedColor
                 }).then(() => {
                     console.log("List updated successfully");
-                    hideModal(modalId);
+                    modal.style.display = 'none';
                 }).catch((error) => {
                     console.error("Error updating list:", error);
                 });
@@ -1908,14 +1880,14 @@
         const deleteBtn = document.getElementById('delete-list-btn');
         deleteBtn.onclick = () => {
             showDeleteConfirmModal('list', listElement);
-            hideModal(modalId);
+            modal.style.display = 'none';
         };
         
-        showModal(modalId);
+        modal.style.display = 'flex';
     }
     
     function showCardOptionsModal(card) {
-        const modalId = 'card-options-modal';
+        const modal = document.getElementById('card-options-modal');
         const titleInput = document.getElementById('card-title-input');
         const descriptionInput = document.getElementById('card-description-input');
         const dueDateInput = document.getElementById('card-due-date');
@@ -1959,13 +1931,13 @@
                     labelIds: selectedLabelIds
                 }).then(() => {
                     console.log("Card updated successfully");
-                    hideModal(modalId);
+                    modal.style.display = 'none';
                 }).catch((error) => {
                     console.error("Error updating card:", error);
                 });
         };
         
-        showModal(modalId);
+        modal.style.display = 'flex';
     }
     
     function renderLabelOptions(card, labelIds) {
@@ -2060,8 +2032,6 @@
         const listId = 'list-' + Date.now();
         const listTitle = 'New List';
         const listColor = '#44444E';
-        // **FIX**: Get the position for the new list
-        const newListPosition = document.querySelectorAll('#board .list').length;
         
         // Add list to Firestore
         db.collection('users').doc(currentUser.uid)
@@ -2071,7 +2041,6 @@
                 id: listId,
                 title: listTitle,
                 color: listColor,
-                position: newListPosition, // **FIX**: Save the position
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 console.log("List added successfully");
@@ -2081,7 +2050,7 @@
     }
     
     function showDeleteConfirmModal(type, element) {
-        const modalId = 'delete-confirm-modal';
+        const modal = document.getElementById('delete-confirm-modal');
         const message = document.getElementById('delete-confirm-message');
         const confirmBtn = document.getElementById('confirm-delete-btn');
         
@@ -2096,7 +2065,7 @@
                     .collection('lists').doc(listId)
                     .delete().then(() => {
                         console.log("List deleted successfully");
-                        hideModal(modalId);
+                        modal.style.display = 'none';
                     }).catch((error) => {
                         console.error("Error deleting list:", error);
                     });
@@ -2114,7 +2083,7 @@
                     .collection('cards').doc(cardId)
                     .delete().then(() => {
                         console.log("Card deleted successfully");
-                        hideModal(modalId);
+                        modal.style.display = 'none';
                     }).catch((error) => {
                         console.error("Error deleting card:", error);
                     });
@@ -2123,17 +2092,17 @@
             message.textContent = 'Are you sure you want to delete this label? This will remove it from all cards.';
             confirmBtn.onclick = () => {
                 deleteLabel(element);
-                hideModal(modalId);
+                modal.style.display = 'none';
             };
         } else if (type === 'board') {
             message.textContent = 'Are you sure you want to delete this board and all its content?';
             confirmBtn.onclick = () => {
                 deleteBoard(element);
-                hideModal(modalId);
+                modal.style.display = 'none';
             };
         }
         
-        showModal(modalId);
+        modal.style.display = 'flex';
     }
     
     function checkEmptyList(list) {
@@ -2159,28 +2128,27 @@
         
         // Close modals
         document.querySelectorAll('.close-modal').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const modal = e.target.closest('.modal');
-                if (modal) {
-                    hideModal(modal.id);
-                }
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
             });
         });
         
         // Click outside modals to close
         window.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) {
-                hideModal(e.target.id);
+                e.target.style.display = 'none';
             }
         });
         
         // Manage labels button
-        document.getElementById('manage-labels-btn').addEventListener('click', () => showModal('manage-labels-modal'));
+        document.getElementById('manage-labels-btn').addEventListener('click', showManageLabelsModal);
         
         // Add new label button in manage modal
         document.getElementById('add-new-label-btn').addEventListener('click', () => {
-            hideModal('manage-labels-modal');
-            showModal('add-label-modal');
+            document.getElementById('manage-labels-modal').style.display = 'none';
+            showAddLabelModal();
         });
 
         // Save new label button
@@ -2190,10 +2158,14 @@
         document.getElementById('save-edit-label').addEventListener('click', saveEditedLabel);
         
         // Boards modal button
-        document.getElementById('boards-modal-btn').addEventListener('click', () => showModal('boards-modal'));
+        document.getElementById('boards-modal-btn').addEventListener('click', () => {
+            document.getElementById('boards-modal').style.display = 'flex';
+        });
         
         // Create board modal button
-        document.getElementById('create-board-modal-btn').addEventListener('click', () => showModal('create-board-modal'));
+        document.getElementById('create-board-modal-btn').addEventListener('click', () => {
+            document.getElementById('create-board-modal').style.display = 'flex';
+        });
         
         // Create new board button
         document.getElementById('create-board-btn').addEventListener('click', createNewBoard);
@@ -2215,8 +2187,8 @@
         // ESC key to close modals
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.show').forEach(modal => {
-                    hideModal(modal.id);
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
                 });
             }
         });
@@ -2331,13 +2303,12 @@
     }
     
     function showAddLabelModal() {
-        const modalId = 'add-label-modal';
-        showModal(modalId);
+        document.getElementById('add-label-modal').style.display = 'flex';
         
         // Set up color options
-        document.querySelectorAll(`#${modalId} .color-option`).forEach(option => {
+        document.querySelectorAll('#add-label-modal .color-option').forEach(option => {
             option.addEventListener('click', () => {
-                document.querySelectorAll(`#${modalId} .color-option`).forEach(opt => {
+                document.querySelectorAll('#add-label-modal .color-option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
                 option.classList.add('selected');
@@ -2347,8 +2318,7 @@
     
     function showEditLabelModal(label) {
         currentEditingLabel = label;
-        const modalId = 'edit-label-modal';
-        const modal = document.getElementById(modalId);
+        const modal = document.getElementById('edit-label-modal');
         const nameInput = document.getElementById('edit-label-name-input');
         
         nameInput.value = label.name;
@@ -2372,7 +2342,7 @@
             });
         });
         
-        showModal(modalId);
+        modal.style.display = 'flex';
     }
     
     function saveEditedLabel() {
@@ -2397,7 +2367,7 @@
                 color: color
             }).then(() => {
                 console.log("Label updated successfully");
-                hideModal('edit-label-modal');
+                document.getElementById('edit-label-modal').style.display = 'none';
             }).catch((error) => {
                 console.error("Error updating label:", error);
             });
@@ -2440,7 +2410,7 @@
     }
     
     function showManageLabelsModal() {
-        const modalId = 'manage-labels-modal';
+        const modal = document.getElementById('manage-labels-modal');
         const labelsList = document.getElementById('labels-list');
         labelsList.innerHTML = '';
         
@@ -2475,7 +2445,7 @@
                 const label = labels.find(l => l.id === labelId);
                 if (label) {
                     // Close the manage labels modal first
-                    hideModal(modalId);
+                    document.getElementById('manage-labels-modal').style.display = 'none';
                     showEditLabelModal(label);
                 }
             });
@@ -2485,12 +2455,12 @@
             btn.addEventListener('click', (e) => {
                 const labelId = e.currentTarget.getAttribute('data-label-id');
                 // Close the manage labels modal first
-                hideModal(modalId);
+                document.getElementById('manage-labels-modal').style.display = 'none';
                 showDeleteConfirmModal('label', labelId);
             });
         });
         
-        showModal(modalId);
+        modal.style.display = 'flex';
     }
     
     function addNewLabel() {
@@ -2516,7 +2486,7 @@
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 console.log("Label added successfully");
-                hideModal('add-label-modal');
+                document.getElementById('add-label-modal').style.display = 'none';
                 nameInput.value = '';
             }).catch((error) => {
                 console.error("Error adding label:", error);
@@ -2664,8 +2634,7 @@
         
         isDraggingList = true;
         draggedList = this;
-        // Use a timeout to allow the browser to render the drag image before applying the class
-        setTimeout(() => this.classList.add('list-dragging'), 0);
+        this.classList.add('list-dragging');
         e.dataTransfer.setData('text/plain', this.getAttribute('data-list-id'));
         e.dataTransfer.setData('type', 'list');
         e.dataTransfer.effectAllowed = 'move';
@@ -2673,11 +2642,9 @@
 
     function handleListDragEnd() {
         isDraggingList = false;
-        if(draggedList) {
-            draggedList.classList.remove('list-dragging');
-        }
         draggedList = null;
         document.querySelectorAll('.list').forEach(list => {
+            list.classList.remove('list-dragging');
             list.classList.remove('list-drag-over');
         });
     }
@@ -2686,17 +2653,6 @@
         if (!isDraggingList) return;
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
-
-        const board = document.getElementById('board');
-        const afterElement = getDragAfterElement(board, e.clientX);
-        
-        if (draggedList) {
-            if (afterElement == null) {
-                board.appendChild(draggedList);
-            } else {
-                board.insertBefore(draggedList, afterElement);
-            }
-        }
     }
 
     function handleListDragEnter(e) {
@@ -2709,7 +2665,6 @@
         this.classList.remove('list-drag-over');
     }
 
-    // **FIX**: Updated list drop logic to save positions
     function handleListDrop(e) {
         if (!isDraggingList) return;
         e.preventDefault();
@@ -2717,28 +2672,22 @@
         const type = e.dataTransfer.getData('type');
         if (type !== 'list') return;
         
-        // Remove visual indicators
+        const listId = e.dataTransfer.getData('text/plain');
+        const list = document.querySelector(`[data-list-id="${listId}"]`);
+        
+        if (list && this !== list) {
+            const board = document.getElementById('board');
+            const afterElement = getDragAfterElement(board, e.clientX);
+            
+            if (afterElement) {
+                board.insertBefore(list, afterElement);
+            } else {
+                board.appendChild(list);
+            }
+        }
+        
         document.querySelectorAll('.list').forEach(list => {
             list.classList.remove('list-drag-over');
-        });
-
-        // Use a batch write to update all list positions in one go
-        const batch = db.batch();
-        const listsOnBoard = document.querySelectorAll('#board .list');
-        
-        listsOnBoard.forEach((list, index) => {
-            const listId = list.getAttribute('data-list-id');
-            const listRef = db.collection('users').doc(currentUser.uid)
-                .collection('boards').doc(currentBoardId)
-                .collection('lists').doc(listId);
-            batch.update(listRef, { position: index });
-        });
-
-        // Commit the batch
-        batch.commit().then(() => {
-            console.log('List positions updated successfully.');
-        }).catch(error => {
-            console.error('Error updating list positions: ', error);
         });
     }
     
@@ -2809,7 +2758,7 @@
         `;
         
         createBoardCard.addEventListener('click', () => {
-            showModal('create-board-modal');
+            document.getElementById('create-board-modal').style.display = 'flex';
         });
         
         boardsGrid.appendChild(createBoardCard);
@@ -2837,7 +2786,7 @@
     
     function switchBoard(boardId) {
         currentBoardId = boardId;
-        hideModal('boards-modal');
+        document.getElementById('boards-modal').style.display = 'none';
         
         // Set up listeners for the new board
         setupFirestoreListeners();
@@ -2899,7 +2848,7 @@
                 updateBoardPreview();
                 
                 // Close the modal
-                hideModal('create-board-modal');
+                document.getElementById('create-board-modal').style.display = 'none';
             }).catch((error) => {
                 console.error("Error creating board:", error);
             });
@@ -2952,7 +2901,7 @@
     
     // NEW: Show recycle bin modal with deleted items
     function showRecycleBinModal() {
-        const modalId = 'recycle-bin-modal';
+        const modal = document.getElementById('recycle-bin-modal');
         const content = document.getElementById('recycle-bin-content');
         
         if (deletedItems.length === 0) {
@@ -3005,7 +2954,7 @@
         }
         
         feather.replace();
-        showModal(modalId);
+        modal.style.display = 'flex';
     }
     
     // NEW: Format date and time for display
@@ -3092,7 +3041,6 @@
                     id: item.id,
                     title: item.title,
                     color: item.color || '#44444E',
-                    position: document.querySelectorAll('#board .list').length -1, // Add to the end
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
                     console.log("List restored successfully");
@@ -3226,3 +3174,4 @@
 </script>
 </body>
 </html>
+
