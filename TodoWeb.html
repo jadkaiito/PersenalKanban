@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark Personal Kanban</title>
     
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#37353E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +14,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -933,13 +932,11 @@
     </style>
 </head>
 <body>
-    <!-- Install App Button -->
     <div id="installBtn" class="install-btn">
         <i data-feather="download"></i> Install App
     </div>
     
     <div class="app-container">
-        <!-- Header -->
         <div class="header">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">
@@ -965,18 +962,14 @@
             </div>
         </div>
         
-        <!-- Board -->
         <div id="board" class="board">
-            <!-- Lists will be added here -->
-        </div>
+            </div>
     </div>
 
-    <!-- Trash Bin for Drag and Drop Deletion -->
     <div id="trash-bin" class="trash-bin">
         <i data-feather="trash-2" class="w-6 h-6"></i>
     </div>
 
-    <!-- Boards Modal (Trello-style) -->
     <div id="boards-modal" class="modal">
         <div class="modal-content boards-modal-content">
             <div class="boards-modal-header">
@@ -989,8 +982,7 @@
             </div>
             
             <div class="boards-grid" id="boards-grid">
-                <!-- Board cards will be dynamically added here -->
-            </div>
+                </div>
             
             <div class="flex justify-center py-4">
                 <button id="create-board-modal-btn" class="btn btn-primary">
@@ -1000,7 +992,6 @@
         </div>
     </div>
 
-    <!-- Create Board Modal -->
     <div id="create-board-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1036,7 +1027,6 @@
         </div>
     </div>
 
-    <!-- Recycle Bin Modal -->
     <div id="recycle-bin-modal" class="modal">
         <div class="modal-content" style="max-width: 600px;">
             <div class="flex justify-between items-center mb-4">
@@ -1055,7 +1045,6 @@
         </div>
     </div>
 
-    <!-- List Options Modal -->
     <div id="list-options-modal" class="modal list-options-modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -1095,7 +1084,6 @@
         </div>
     </div>
 
-    <!-- Card Options Modal -->
     <div id="card-options-modal" class="modal">
         <div class="modal-content card-modal-minimal">
             <div class="card-modal-header flex justify-between items-center">
@@ -1129,8 +1117,7 @@
                     </button>
                 </div>
                 <div id="label-options" class="label-options-minimal">
-                    <!-- Labels will be added dynamically -->
-                </div>
+                    </div>
             </div>
             
             <div class="card-modal-section">
@@ -1146,7 +1133,6 @@
         </div>
     </div>
 
-    <!-- Add Label Modal -->
     <div id="add-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1186,7 +1172,6 @@
         </div>
     </div>
 
-    <!-- Edit Label Modal -->
     <div id="edit-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1226,7 +1211,6 @@
         </div>
     </div>
 
-    <!-- Manage Labels Modal -->
     <div id="manage-labels-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1238,8 +1222,7 @@
             
             <div class="mb-4">
                 <div id="labels-list" class="space-y-2">
-                    <!-- Labels will be added dynamically -->
-                </div>
+                    </div>
             </div>
             
             <div class="flex justify-end gap-2">
@@ -1249,7 +1232,6 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div id="delete-confirm-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1270,7 +1252,6 @@
         </div>
     </div>
 
-    <!-- Context Menu -->
     <div id="context-menu" class="context-menu">
         <button class="edit-card-btn">
             <i data-feather="edit-2" class="w-4 h-4"></i> Edit
@@ -1280,7 +1261,7 @@
         </button>
     </div>
 
-        <script>
+    <script>
     // Firebase Configuration
     const firebaseConfig = {
         apiKey: "AIzaSyAhLX2bfl2sNK0bCTbDR5eoB2Ssskv2M_U",
@@ -1398,7 +1379,9 @@
         // Listen for lists in the current board
         listsUnsubscribe = db.collection('users').doc(currentUser.uid)
             .collection('boards').doc(currentBoardId)
-            .collection('lists').onSnapshot((snapshot) => {
+            .collection('lists')
+            .orderBy('order') // Sort by the order field
+            .onSnapshot((snapshot) => {
                 const listsData = { lists: [] };
                 snapshot.forEach((doc) => {
                     listsData.lists.push({ id: doc.id, ...doc.data() });
@@ -2032,6 +2015,7 @@
         const listId = 'list-' + Date.now();
         const listTitle = 'New List';
         const listColor = '#44444E';
+        const order = document.querySelectorAll('#board .list').length; // Get the new order number
         
         // Add list to Firestore
         db.collection('users').doc(currentUser.uid)
@@ -2041,6 +2025,7 @@
                 id: listId,
                 title: listTitle,
                 color: listColor,
+                order: order, // Add the order field
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 console.log("List added successfully");
@@ -2689,6 +2674,9 @@
         document.querySelectorAll('.list').forEach(list => {
             list.classList.remove('list-drag-over');
         });
+        
+        // Save the new order to Firestore
+        updateListOrderInFirestore();
     }
     
     function getDragAfterElement(container, x) {
@@ -2704,6 +2692,25 @@
                 return closest;
             }
         }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+    
+    function updateListOrderInFirestore() {
+        const lists = document.querySelectorAll('#board .list');
+        const batch = db.batch();
+
+        lists.forEach((list, index) => {
+            const listId = list.getAttribute('data-list-id');
+            const listRef = db.collection('users').doc(currentUser.uid)
+                            .collection('boards').doc(currentBoardId)
+                            .collection('lists').doc(listId);
+            batch.update(listRef, { order: index });
+        });
+
+        batch.commit().then(() => {
+            console.log('List order updated successfully.');
+        }).catch(error => {
+            console.error('Error updating list order: ', error);
+        });
     }
     
     // NEW: Boards modal functions
@@ -3174,4 +3181,3 @@
 </script>
 </body>
 </html>
-
