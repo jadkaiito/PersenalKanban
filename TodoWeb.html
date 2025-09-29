@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark Personal Kanban</title>
     
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#37353E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +13,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -930,16 +928,68 @@
             background: #7D6565;
             transform: translateY(-2px);
         }
+
+        /* NEW: Checklist styles */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .checklist-item:hover {
+            background: rgba(55, 53, 62, 0.9);
+        }
+
+        .checklist-item-checkbox {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            accent-color: #61bd4f; /* Green check */
+        }
+
+        .checklist-item-text {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            color: #D3DAD9;
+            padding: 4px;
+            border-radius: 2px;
+        }
+
+        .checklist-item-text:focus {
+            outline: none;
+            background: #37353E;
+            box-shadow: 0 0 0 1px #5A5862;
+        }
+
+        .checklist-item-text.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .checklist-progress {
+            background: #4a5d49 !important; /* A muted green */
+        }
+
+        .checklist-progress.completed {
+            background: #61bd4f !important; /* Brighter green when all done */
+        }
+        
+        #checklist-items-container::-webkit-scrollbar { width: 8px; }
+        #checklist-items-container::-webkit-scrollbar-track { background: rgba(55, 53, 62, 0.7); border-radius: 4px; }
+        #checklist-items-container::-webkit-scrollbar-thumb { background: #715A5A; border-radius: 4px; }
+        #checklist-items-container::-webkit-scrollbar-thumb:hover { background: #7D6565; }
+
     </style>
 </head>
 <body>
-    <!-- Install App Button -->
     <div id="installBtn" class="install-btn">
         <i data-feather="download"></i> Install App
     </div>
     
     <div class="app-container">
-        <!-- Header -->
         <div class="header">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">
@@ -965,18 +1015,14 @@
             </div>
         </div>
         
-        <!-- Board -->
         <div id="board" class="board">
-            <!-- Lists will be added here -->
-        </div>
+            </div>
     </div>
 
-    <!-- Trash Bin for Drag and Drop Deletion -->
     <div id="trash-bin" class="trash-bin">
         <i data-feather="trash-2" class="w-6 h-6"></i>
     </div>
 
-    <!-- Boards Modal (Trello-style) -->
     <div id="boards-modal" class="modal">
         <div class="modal-content boards-modal-content">
             <div class="boards-modal-header">
@@ -989,8 +1035,7 @@
             </div>
             
             <div class="boards-grid" id="boards-grid">
-                <!-- Board cards will be dynamically added here -->
-            </div>
+                </div>
             
             <div class="flex justify-center py-4">
                 <button id="create-board-modal-btn" class="btn btn-primary">
@@ -1000,7 +1045,6 @@
         </div>
     </div>
 
-    <!-- Create Board Modal -->
     <div id="create-board-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1028,6 +1072,9 @@
                     <div class="color-option" style="background: #4bbf6b;" data-color="#4bbf6b"></div>
                     <div class="color-option" style="background: #00aecc;" data-color="#00aecc"></div>
                     <div class="color-option" style="background: #838c91;" data-color="#838c91"></div>
+                    <div class="color-option" style="background: #c377e0;" data-color="#c377e0"></div>
+                    <div class="color-option" style="background: #497c6b;" data-color="#497c6b"></div>
+                    <div class="color-option" style="background: #026aa7;" data-color="#026aa7"></div>
                 </div>
             </div>
             <button id="create-board-btn" class="btn btn-primary w-full">
@@ -1036,7 +1083,6 @@
         </div>
     </div>
 
-    <!-- Recycle Bin Modal -->
     <div id="recycle-bin-modal" class="modal">
         <div class="modal-content" style="max-width: 600px;">
             <div class="flex justify-between items-center mb-4">
@@ -1055,7 +1101,6 @@
         </div>
     </div>
 
-    <!-- List Options Modal -->
     <div id="list-options-modal" class="modal list-options-modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -1085,6 +1130,10 @@
                     <div class="color-option" style="background: #5A715A;" data-color="#5A715A"></div>
                     <div class="color-option" style="background: #5A5A71;" data-color="#5A5A71"></div>
                     <div class="color-option" style="background: #eb5a46;" data-color="#eb5a46"></div>
+                    <div class="color-option" style="background: #3A5F5F;" data-color="#3A5F5F"></div>
+                    <div class="color-option" style="background: #5C4B5C;" data-color="#5C4B5C"></div>
+                    <div class="color-option" style="background: #4A5263;" data-color="#4A5263"></div>
+                    <div class="color-option" style="background: #6D4747;" data-color="#6D4747"></div>
                 </div>
             </div>
             
@@ -1095,7 +1144,6 @@
         </div>
     </div>
 
-    <!-- Card Options Modal -->
     <div id="card-options-modal" class="modal">
         <div class="modal-content card-modal-minimal">
             <div class="card-modal-header flex justify-between items-center">
@@ -1129,8 +1177,7 @@
                     </button>
                 </div>
                 <div id="label-options" class="label-options-minimal">
-                    <!-- Labels will be added dynamically -->
-                </div>
+                    </div>
             </div>
             
             <div class="card-modal-section">
@@ -1139,6 +1186,21 @@
                 </div>
                 <input type="date" id="card-due-date" class="input-minimal">
             </div>
+
+            <div class="card-modal-section">
+                <div class="card-modal-section-title">
+                    <i data-feather="check-square" class="w-4 h-4"></i> Checklist
+                </div>
+                <div id="checklist-progress-bar" class="w-full bg-gray-700 rounded-full h-2 mb-2 hidden" style="background-color: #37353E;">
+                    <div id="checklist-progress" class="bg-green-500 h-2 rounded-full" style="width: 0%; background-color: #61bd4f; transition: width 0.3s ease;"></div>
+                </div>
+                <div id="checklist-items-container" class="space-y-2 mb-2 max-h-48 overflow-y-auto">
+                    </div>
+                <div class="flex gap-2">
+                    <input type="text" id="checklist-item-input" class="input-minimal flex-grow" placeholder="Add an item...">
+                    <button id="add-checklist-item-btn" class="btn btn-secondary">Add</button>
+                </div>
+            </div>
             
             <div class="flex justify-end gap-2 pt-4 border-t border-[#5A5862]">
                 <button id="save-card-options" class="btn btn-primary">Save Changes</button>
@@ -1146,7 +1208,6 @@
         </div>
     </div>
 
-    <!-- Add Label Modal -->
     <div id="add-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1176,6 +1237,10 @@
                     <div class="color-option" style="background: #5A715A;" data-color="#5A715A"></div>
                     <div class="color-option" style="background: #5A5A71;" data-color="#5A5A71"></div>
                     <div class="color-option" style="background: #eb5a46;" data-color="#eb5a46"></div>
+                    <div class="color-option" style="background: #3A5F5F;" data-color="#3A5F5F"></div>
+                    <div class="color-option" style="background: #5C4B5C;" data-color="#5C4B5C"></div>
+                    <div class="color-option" style="background: #4A5263;" data-color="#4A5263"></div>
+                    <div class="color-option" style="background: #6D4747;" data-color="#6D4747"></div>
                 </div>
             </div>
             
@@ -1186,7 +1251,6 @@
         </div>
     </div>
 
-    <!-- Edit Label Modal -->
     <div id="edit-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1216,6 +1280,10 @@
                     <div class="color-option" style="background: #5A715A;" data-color="#5A715A"></div>
                     <div class="color-option" style="background: #5A5A71;" data-color="#5A5A71"></div>
                     <div class="color-option" style="background: #eb5a46;" data-color="#eb5a46"></div>
+                    <div class="color-option" style="background: #3A5F5F;" data-color="#3A5F5F"></div>
+                    <div class="color-option" style="background: #5C4B5C;" data-color="#5C4B5C"></div>
+                    <div class="color-option" style="background: #4A5263;" data-color="#4A5263"></div>
+                    <div class="color-option" style="background: #6D4747;" data-color="#6D4747"></div>
                 </div>
             </div>
             
@@ -1226,7 +1294,6 @@
         </div>
     </div>
 
-    <!-- Manage Labels Modal -->
     <div id="manage-labels-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1238,8 +1305,7 @@
             
             <div class="mb-4">
                 <div id="labels-list" class="space-y-2">
-                    <!-- Labels will be added dynamically -->
-                </div>
+                    </div>
             </div>
             
             <div class="flex justify-end gap-2">
@@ -1249,7 +1315,6 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div id="delete-confirm-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1270,7 +1335,6 @@
         </div>
     </div>
 
-    <!-- Context Menu -->
     <div id="context-menu" class="context-menu">
         <button class="edit-card-btn">
             <i data-feather="edit-2" class="w-4 h-4"></i> Edit
@@ -1333,6 +1397,9 @@
 
     // For label editing
     let currentEditingLabel = null;
+    
+    // NEW: For card checklist editing
+    let currentChecklist = [];
 
     // For boards management
     let boards = [];
@@ -1599,6 +1666,19 @@
             </span>
         ` : '';
         
+        // NEW: Checklist progress indicator
+        const checklistProgressHTML = (card.checklist && card.checklist.length > 0) ? (() => {
+            const completedItems = card.checklist.filter(i => i.completed).length;
+            const totalItems = card.checklist.length;
+            const isAllCompleted = completedItems === totalItems;
+            return `
+                <span class="due-date checklist-progress ${isAllCompleted ? 'completed' : ''}">
+                    <i data-feather="check-square" class="w-3 h-3"></i> 
+                    ${completedItems}/${totalItems}
+                </span>
+            `;
+        })() : '';
+
         cardElement.innerHTML = `
             <div class="card-checkbox ${card.completed ? 'checked' : ''}" data-card-id="${card.id}"></div>
             <div class="card-content-container" style="flex: 1;">
@@ -1623,6 +1703,7 @@
                     <div class="card-labels">
                         ${cardLabels}
                         ${dueDateHTML}
+                        ${checklistProgressHTML}
                     </div>
                 </div>
             </div>
@@ -1816,6 +1897,7 @@
                 labelIds: [],
                 listId: listId,
                 completed: false, // Add completed field with default value
+                checklist: [], // NEW: Initialize with an empty checklist
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 console.log("Card added successfully");
@@ -1888,56 +1970,147 @@
     
     function showCardOptionsModal(card) {
         const modal = document.getElementById('card-options-modal');
-        const titleInput = document.getElementById('card-title-input');
-        const descriptionInput = document.getElementById('card-description-input');
-        const dueDateInput = document.getElementById('card-due-date');
-        
-        const title = card.querySelector('.font-medium').textContent;
-        const description = card.querySelector('.opacity-80') ? card.querySelector('.opacity-80').textContent : '';
-        const dueDate = card.getAttribute('data-due-date') || '';
-        const labelIds = card.getAttribute('data-label-ids') || '';
-        
-        titleInput.value = title;
-        descriptionInput.value = description;
-        dueDateInput.value = dueDate;
-        
-        // Render label options
-        renderLabelOptions(card, labelIds);
-        
-        // Save button
-        const saveBtn = document.getElementById('save-card-options');
-        saveBtn.onclick = () => {
-            const cardId = card.getAttribute('data-card-id');
-            const listId = card.closest('.list').getAttribute('data-list-id');
-            const newTitle = titleInput.value;
-            const newDescription = descriptionInput.value;
-            const newDueDate = dueDateInput.value;
-            
-            // Get selected label IDs
-            const selectedLabelIds = [];
-            document.querySelectorAll('.label-option-minimal.selected').forEach(option => {
-                selectedLabelIds.push(option.getAttribute('data-label-id'));
+        const cardId = card.getAttribute('data-card-id');
+        const listId = card.closest('.list').getAttribute('data-list-id');
+
+        // Fetch the full card data for the checklist
+        db.collection('users').doc(currentUser.uid)
+            .collection('boards').doc(currentBoardId)
+            .collection('lists').doc(listId)
+            .collection('cards').doc(cardId)
+            .get().then(doc => {
+                if (!doc.exists) {
+                    console.error("Card not found!");
+                    return;
+                }
+                const cardData = doc.data();
+                
+                // Populate fields
+                document.getElementById('card-title-input').value = cardData.title || '';
+                document.getElementById('card-description-input').value = cardData.description || '';
+                document.getElementById('card-due-date').value = cardData.dueDate || '';
+                
+                // Render labels
+                renderLabelOptions(card, cardData.labelIds ? cardData.labelIds.join(',') : '');
+                
+                // NEW: Render checklist
+                currentChecklist = cardData.checklist || [];
+                renderChecklistUI();
+
+                // Save button logic
+                document.getElementById('save-card-options').onclick = () => {
+                    const newTitle = document.getElementById('card-title-input').value;
+                    const newDescription = document.getElementById('card-description-input').value;
+                    const newDueDate = document.getElementById('card-due-date').value;
+                    
+                    const selectedLabelIds = Array.from(document.querySelectorAll('.label-option-minimal.selected'))
+                        .map(option => option.getAttribute('data-label-id'));
+                    
+                    // Update card in Firestore
+                    db.collection('users').doc(currentUser.uid)
+                        .collection('boards').doc(currentBoardId)
+                        .collection('lists').doc(listId)
+                        .collection('cards').doc(cardId)
+                        .update({
+                            title: newTitle,
+                            description: newDescription,
+                            dueDate: newDueDate,
+                            labelIds: selectedLabelIds,
+                            checklist: currentChecklist // Save the checklist
+                        }).then(() => {
+                            console.log("Card updated successfully");
+                            modal.style.display = 'none';
+                        }).catch((error) => {
+                            console.error("Error updating card:", error);
+                        });
+                };
+                
+                modal.style.display = 'flex';
+                feather.replace();
+
+            }).catch(error => {
+                console.error("Error fetching card details:", error);
             });
-            
-            // Update card in Firestore
-            db.collection('users').doc(currentUser.uid)
-                .collection('boards').doc(currentBoardId)
-                .collection('lists').doc(listId)
-                .collection('cards').doc(cardId)
-                .update({
-                    title: newTitle,
-                    description: newDescription,
-                    dueDate: newDueDate,
-                    labelIds: selectedLabelIds
-                }).then(() => {
-                    console.log("Card updated successfully");
-                    modal.style.display = 'none';
-                }).catch((error) => {
-                    console.error("Error updating card:", error);
-                });
-        };
+    }
+
+    // NEW: Checklist functions
+    function renderChecklistUI() {
+        const container = document.getElementById('checklist-items-container');
+        container.innerHTML = '';
         
-        modal.style.display = 'flex';
+        currentChecklist.forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'checklist-item';
+            itemEl.setAttribute('data-item-id', item.id);
+            
+            itemEl.innerHTML = `
+                <input type="checkbox" class="checklist-item-checkbox" ${item.completed ? 'checked' : ''}>
+                <input type="text" class="checklist-item-text ${item.completed ? 'completed' : ''}" value="${item.text}">
+                <button class="btn-icon delete-checklist-item">
+                    <i data-feather="x" class="w-4 h-4"></i>
+                </button>
+            `;
+            container.appendChild(itemEl);
+        });
+
+        // Add event listeners
+        container.querySelectorAll('.checklist-item').forEach(itemEl => {
+            const itemId = itemEl.getAttribute('data-item-id');
+            const checkbox = itemEl.querySelector('.checklist-item-checkbox');
+            const textInput = itemEl.querySelector('.checklist-item-text');
+            const deleteBtn = itemEl.querySelector('.delete-checklist-item');
+
+            checkbox.addEventListener('change', () => {
+                const item = currentChecklist.find(i => i.id === itemId);
+                item.completed = checkbox.checked;
+                textInput.classList.toggle('completed', checkbox.checked);
+                updateChecklistProgressUI();
+            });
+
+            textInput.addEventListener('blur', () => {
+                const item = currentChecklist.find(i => i.id === itemId);
+                item.text = textInput.value;
+            });
+
+            deleteBtn.addEventListener('click', () => {
+                currentChecklist = currentChecklist.filter(i => i.id !== itemId);
+                renderChecklistUI();
+            });
+        });
+
+        updateChecklistProgressUI();
+        feather.replace();
+    }
+    
+    function updateChecklistProgressUI() {
+        const progressBarContainer = document.getElementById('checklist-progress-bar');
+        if (currentChecklist.length === 0) {
+            progressBarContainer.style.display = 'none';
+            return;
+        }
+
+        progressBarContainer.style.display = 'block';
+        const completedItems = currentChecklist.filter(i => i.completed).length;
+        const totalItems = currentChecklist.length;
+        const percentage = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
+
+        const progressBar = document.getElementById('checklist-progress');
+        progressBar.style.width = `${percentage}%`;
+    }
+
+    function handleAddChecklistItem() {
+        const input = document.getElementById('checklist-item-input');
+        const text = input.value.trim();
+        if (text) {
+            currentChecklist.push({
+                id: 'ci-' + Date.now(),
+                text: text,
+                completed: false
+            });
+            input.value = '';
+            renderChecklistUI();
+            input.focus();
+        }
     }
     
     function renderLabelOptions(card, labelIds) {
@@ -2190,6 +2363,15 @@
                 document.querySelectorAll('.modal').forEach(modal => {
                     modal.style.display = 'none';
                 });
+            }
+        });
+
+        // NEW: Checklist Add Button Event Listeners
+        document.getElementById('add-checklist-item-btn').addEventListener('click', handleAddChecklistItem);
+        document.getElementById('checklist-item-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleAddChecklistItem();
             }
         });
     }
@@ -3174,4 +3356,3 @@
 </script>
 </body>
 </html>
-
