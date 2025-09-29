@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark Personal Kanban</title>
     
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#37353E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +14,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -933,13 +932,11 @@
     </style>
 </head>
 <body>
-    <!-- Install App Button -->
     <div id="installBtn" class="install-btn">
         <i data-feather="download"></i> Install App
     </div>
     
     <div class="app-container">
-        <!-- Header -->
         <div class="header">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">
@@ -965,18 +962,14 @@
             </div>
         </div>
         
-        <!-- Board -->
         <div id="board" class="board">
-            <!-- Lists will be added here -->
-        </div>
+            </div>
     </div>
 
-    <!-- Trash Bin for Drag and Drop Deletion -->
     <div id="trash-bin" class="trash-bin">
         <i data-feather="trash-2" class="w-6 h-6"></i>
     </div>
 
-    <!-- Boards Modal (Trello-style) -->
     <div id="boards-modal" class="modal">
         <div class="modal-content boards-modal-content">
             <div class="boards-modal-header">
@@ -989,8 +982,7 @@
             </div>
             
             <div class="boards-grid" id="boards-grid">
-                <!-- Board cards will be dynamically added here -->
-            </div>
+                </div>
             
             <div class="flex justify-center py-4">
                 <button id="create-board-modal-btn" class="btn btn-primary">
@@ -1000,7 +992,6 @@
         </div>
     </div>
 
-    <!-- Create Board Modal -->
     <div id="create-board-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1036,7 +1027,6 @@
         </div>
     </div>
 
-    <!-- Recycle Bin Modal -->
     <div id="recycle-bin-modal" class="modal">
         <div class="modal-content" style="max-width: 600px;">
             <div class="flex justify-between items-center mb-4">
@@ -1055,7 +1045,6 @@
         </div>
     </div>
 
-    <!-- List Options Modal -->
     <div id="list-options-modal" class="modal list-options-modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -1095,7 +1084,6 @@
         </div>
     </div>
 
-    <!-- Card Options Modal -->
     <div id="card-options-modal" class="modal">
         <div class="modal-content card-modal-minimal">
             <div class="card-modal-header flex justify-between items-center">
@@ -1129,8 +1117,7 @@
                     </button>
                 </div>
                 <div id="label-options" class="label-options-minimal">
-                    <!-- Labels will be added dynamically -->
-                </div>
+                    </div>
             </div>
             
             <div class="card-modal-section">
@@ -1146,7 +1133,6 @@
         </div>
     </div>
 
-    <!-- Add Label Modal -->
     <div id="add-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1186,7 +1172,6 @@
         </div>
     </div>
 
-    <!-- Edit Label Modal -->
     <div id="edit-label-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1226,7 +1211,6 @@
         </div>
     </div>
 
-    <!-- Manage Labels Modal -->
     <div id="manage-labels-modal" class="modal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="flex justify-between items-center mb-4">
@@ -1238,8 +1222,7 @@
             
             <div class="mb-4">
                 <div id="labels-list" class="space-y-2">
-                    <!-- Labels will be added dynamically -->
-                </div>
+                    </div>
             </div>
             
             <div class="flex justify-end gap-2">
@@ -1249,7 +1232,6 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div id="delete-confirm-modal" class="modal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="flex justify-between items-center mb-4">
@@ -1270,7 +1252,6 @@
         </div>
     </div>
 
-    <!-- Context Menu -->
     <div id="context-menu" class="context-menu">
         <button class="edit-card-btn">
             <i data-feather="edit-2" class="w-4 h-4"></i> Edit
@@ -1280,1790 +1261,259 @@
         </button>
     </div>
 
-        <script>
-    // Firebase Configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyAhLX2bfl2sNK0bCTbDR5eoB2Ssskv2M_U",
-        authDomain: "personal-kandan.firebaseapp.com",
-        projectId: "personal-kandan",
-        storageBucket: "personal-kandan.firebasestorage.app",
-        messagingSenderId: "1042051090565",
-        appId: "1:1042051090565:web:5da62b0de9cc16328a41ec",
-        measurementId: "G-GKPWJE2NTM"
-    };
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhLX2bfl2sNK0bCTbDR5eoB2Ssskv2M_U",
+            authDomain: "personal-kandan.firebaseapp.com",
+            projectId: "personal-kandan",
+            storageBucket: "personal-kandan.firebasestorage.app",
+            messagingSenderId: "1042051090565",
+            appId: "1:1042051090565:web:5da62b0de9cc16328a41ec",
+            measurementId: "G-GKPWJE2NTM"
+        };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-    document.addEventListener('DOMContentLoaded', () => {
-        feather.replace();
-        
-        // Check authentication status
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in, initialize app
-                currentUser = user;
-                initializeApp();
-            } else {
-                // No user is signed in, redirect to auth page
-                window.location.href = 'index.html';
-            }
-        });
-    });
-
-    // Global variables
-    let currentUser = null;
-    let currentCard = null;
-    let currentList = null;
-    let labels = [];
-    let currentBoardId = 'default-board'; // Default board ID
-    
-    // For board dragging
-    let isDragging = false;
-    let startX, startY;
-    let scrollLeft, scrollTop;
-    let isDraggingList = false;
-    let draggedList = null;
-
-    // For vertical page scrolling
-    let isVerticalScrolling = false;
-    let verticalScrollStartY, verticalScrollStartTop;
-
-    // For label editing
-    let currentEditingLabel = null;
-
-    // For boards management
-    let boards = [];
-    
-    // For recycle bin
-    let deletedItems = [];
-
-    // Firestore data listeners
-    let boardsUnsubscribe = null;
-    let listsUnsubscribe = null;
-    let labelsUnsubscribe = null;
-
-    // Card listeners for each list
-    let cardListeners = {};
-
-    function initializeApp() {
-        // Set up realtime listeners for Firestore data
-        setupFirestoreListeners();
-        
-        // Set up event listeners
-        setupEventListeners();
-        attachDragAndDrop();
-        setupBoardDragging();
-        setupContextMenu();
-        setupListDragAndDrop();
-        setupVerticalPageScrolling();
-        renderBoardsModal();
-        setupTrashBin();
-        
-        // Add logout button event listener
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            auth.signOut().then(() => {
-                window.location.href = 'index.html';
-            });
-        });
-        
-        // Initialize PWA functionality
-        initPWA();
-    }
-
-    function setupFirestoreListeners() {
-        // Clear any existing listeners
-        if (boardsUnsubscribe) boardsUnsubscribe();
-        if (listsUnsubscribe) listsUnsubscribe();
-        if (labelsUnsubscribe) labelsUnsubscribe();
-        
-        // Clear card listeners
-        Object.values(cardListeners).forEach(unsubscribe => unsubscribe());
-        cardListeners = {};
-        
-        // Listen for boards changes
-        boardsUnsubscribe = db.collection('users').doc(currentUser.uid)
-            .collection('boards').onSnapshot((snapshot) => {
-                boards = [];
-                snapshot.forEach((doc) => {
-                    boards.push({ id: doc.id, ...doc.data() });
-                });
-                renderBoardsModal();
-            }, (error) => {
-                console.error("Error getting boards:", error);
-            });
-        
-        // Listen for lists in the current board
-        listsUnsubscribe = db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('lists').onSnapshot((snapshot) => {
-                const listsData = { lists: [] };
-                snapshot.forEach((doc) => {
-                    listsData.lists.push({ id: doc.id, ...doc.data() });
-                });
-                renderBoard(listsData);
-                
-                // Set up card listeners for each list
-                snapshot.forEach((doc) => {
-                    const listId = doc.id;
-                    setupCardListenerForList(listId);
-                });
-            }, (error) => {
-                console.error("Error getting lists:", error);
-            });
-        
-        // Listen for labels in the current board
-        labelsUnsubscribe = db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('labels').onSnapshot((snapshot) => {
-                labels = [];
-                snapshot.forEach((doc) => {
-                    labels.push({ id: doc.id, ...doc.data() });
-                });
-                
-                // Update labels in card modal if it's open
-                if (currentCard) {
-                    renderLabelOptions(currentCard, currentCard.getAttribute('data-label-ids'));
-                }
-            }, (error) => {
-                console.error("Error getting labels:", error);
-            });
-    }
-
-    function setupCardListenerForList(listId) {
-        // Remove existing listener if any
-        if (cardListeners[listId]) {
-            cardListeners[listId]();
-        }
-        
-        // Set up new listener for this list's cards
-        cardListeners[listId] = db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('lists').doc(listId)
-            .collection('cards')
-            .orderBy('createdAt', 'asc')
-            .onSnapshot((snapshot) => {
-                const listElement = document.querySelector(`[data-list-id="${listId}"]`);
-                if (!listElement) return;
-                
-                const cardsContainer = listElement.querySelector('.list-cards');
-                cardsContainer.innerHTML = '';
-                
-                if (snapshot.empty) {
-                    cardsContainer.innerHTML = '<div class="empty-state"><i data-feather="inbox" class="w-6 h-6 mx-auto mb-2"></i><p>No cards</p></div>';
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            
+            // Check authentication status
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    // User is signed in, initialize app
+                    currentUser = user;
+                    initializeApp();
                 } else {
+                    // No user is signed in, redirect to auth page
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+
+        // Global variables
+        let currentUser = null;
+        let currentCard = null;
+        let currentList = null;
+        let labels = [];
+        let currentBoardId = 'default-board'; // Default board ID
+        
+        // For board dragging
+        let isDragging = false;
+        let startX, startY;
+        let scrollLeft, scrollTop;
+        let isDraggingList = false;
+        let draggedList = null;
+
+        // For vertical page scrolling
+        let isVerticalScrolling = false;
+        let verticalScrollStartY, verticalScrollStartTop;
+
+        // For label editing
+        let currentEditingLabel = null;
+
+        // For boards management
+        let boards = [];
+        
+        // For recycle bin
+        let deletedItems = [];
+
+        // Firestore data listeners
+        let boardsUnsubscribe = null;
+        let listsUnsubscribe = null;
+        let labelsUnsubscribe = null;
+
+        // Card listeners for each list
+        let cardListeners = {};
+
+        function initializeApp() {
+            // Set up realtime listeners for Firestore data
+            setupFirestoreListeners();
+            
+            // Set up event listeners
+            setupEventListeners();
+            attachDragAndDrop();
+            setupBoardDragging();
+            setupContextMenu();
+            setupListDragAndDrop();
+            setupVerticalPageScrolling();
+            renderBoardsModal();
+            setupTrashBin();
+            
+            // Add logout button event listener
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                auth.signOut().then(() => {
+                    window.location.href = 'index.html';
+                });
+            });
+            
+            // Initialize PWA functionality
+            initPWA();
+        }
+
+        function setupFirestoreListeners() {
+            // Clear any existing listeners
+            if (boardsUnsubscribe) boardsUnsubscribe();
+            if (listsUnsubscribe) listsUnsubscribe();
+            if (labelsUnsubscribe) labelsUnsubscribe();
+            
+            // Clear card listeners
+            Object.values(cardListeners).forEach(unsubscribe => unsubscribe());
+            cardListeners = {};
+            
+            // Listen for boards changes
+            boardsUnsubscribe = db.collection('users').doc(currentUser.uid)
+                .collection('boards').onSnapshot((snapshot) => {
+                    boards = [];
                     snapshot.forEach((doc) => {
-                        const card = { id: doc.id, ...doc.data() };
-                        const cardElement = createCardElement(card);
-                        cardsContainer.appendChild(cardElement);
+                        boards.push({ id: doc.id, ...doc.data() });
                     });
-                }
-                
-                feather.replace();
-            }, (error) => {
-                console.error("Error getting cards for list:", listId, error);
-            });
-    }
-
-    function getFormattedDate(daysFromNow) {
-        const date = new Date();
-        date.setDate(date.getDate() + daysFromNow);
-        return date.toISOString().split('T')[0];
-    }
-
-    function renderBoard(data) {
-        const board = document.getElementById('board');
-        board.innerHTML = '';
-        
-        data.lists.forEach(list => {
-            const listElement = createListElement(list);
-            board.appendChild(listElement);
-        });
-        
-        // Replace all icons after all lists are rendered
-        feather.replace();
-    }
-
-    function createListElement(list) {
-        const listElement = document.createElement('div');
-        listElement.className = 'list animate-in';
-        listElement.setAttribute('data-list-id', list.id);
-        listElement.setAttribute('draggable', 'true');
-        listElement.style.backgroundColor = list.color || '#44444E';
-        
-        const listHTML = `
-            <div class="list-header" style="background: ${getHeaderColor(list.color || '#44444E')};">
-                <h3 class="text-sm font-semibold">${list.title}</h3>
-                <div class="dropdown">
-                    <button class="btn-icon list-options-btn">
-                        <i data-feather="more-horizontal" class="w-4 h-4"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <button class="edit-list-btn">
-                            <i data-feather="edit-2" class="w-4 h-4"></i> Edit List
-                        </button>
-                        <button class="delete-list-btn">
-                            <i data-feather="trash-2" class="w-4 h-4"></i> Delete List
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="list-cards">
-                <div class="empty-state"><i data-feather="inbox" class="w-6 h-6 mx-auto mb-2"></i><p>No cards</p></div>
-            </div>
-            <div class="add-card-section">
-                <button class="btn btn-secondary w-full add-card-btn">
-                    <i data-feather="plus" class="w-4 h-4"></i> Add a card
-                </button>
-            </div>
-        `;
-        
-        listElement.innerHTML = listHTML;
-        
-        // Add event listeners to the list
-        const addCardBtn = listElement.querySelector('.add-card-btn');
-        addCardBtn.addEventListener('click', () => {
-            showAddCardForm(listElement);
-        });
-        
-        // Add event listeners to dropdown
-        const dropdownBtn = listElement.querySelector('.list-options-btn');
-        const dropdown = listElement.querySelector('.dropdown');
-        
-        dropdownBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking elsewhere
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('show');
-            }
-        });
-        
-        // Edit list button
-        const editListBtn = listElement.querySelector('.edit-list-btn');
-        editListBtn.addEventListener('click', () => {
-            currentList = listElement;
-            showListOptionsModal(listElement);
-            dropdown.classList.remove('show');
-        });
-        
-        // Delete list button
-        const deleteListBtn = listElement.querySelector('.delete-list-btn');
-        deleteListBtn.addEventListener('click', () => {
-            showDeleteConfirmModal('list', listElement);
-            dropdown.classList.remove('show');
-        });
-        
-        // Make the list a drop target
-        const listCards = listElement.querySelector('.list-cards');
-        listCards.addEventListener('dragover', handleDragOver);
-        listCards.addEventListener('dragenter', handleDragEnter);
-        listCards.addEventListener('dragleave', handleDragLeave);
-        listCards.addEventListener('drop', handleDrop);
-        
-        // Set up list dragging
-        listElement.addEventListener('dragstart', handleListDragStart);
-        listElement.addEventListener('dragend', handleListDragEnd);
-        
-        return listElement;
-    }
-    
-    function createCardElement(card) {
-        const cardElement = document.createElement('div');
-        cardElement.className = 'card';
-        cardElement.setAttribute('data-card-id', card.id);
-        cardElement.setAttribute('draggable', 'true');
-        cardElement.setAttribute('data-due-date', card.dueDate || '');
-        cardElement.setAttribute('data-label-ids', card.labelIds ? card.labelIds.join(',') : '');
-        
-        // Check if card is completed
-        if (card.completed) {
-            cardElement.classList.add('completed');
-        }
-        
-        const cardLabels = card.labelIds ? card.labelIds.map(id => {
-            const label = labels.find(l => l.id === id);
-            return label ? `
-                <span class="label" style="background: ${label.color};">${label.name}</span>
-            ` : '';
-        }).join('') : '';
-        
-        const dueDateHTML = card.dueDate ? `
-            <span class="due-date">
-                <i data-feather="calendar" class="w-3 h-3"></i> ${formatDate(card.dueDate)}
-            </span>
-        ` : '';
-        
-        cardElement.innerHTML = `
-            <div class="card-checkbox ${card.completed ? 'checked' : ''}" data-card-id="${card.id}"></div>
-            <div class="card-content-container" style="flex: 1;">
-                <div class="card-dropdown">
-                    <button class="btn-icon card-options-btn">
-                        <i data-feather="more-horizontal" class="w-4 h-4"></i>
-                    </button>
-                    <div class="card-dropdown-content">
-                        <button class="edit-card-btn">
-                            <i data-feather="edit-2" class="w-4 h-4"></i> Edit
-                        </button>
-                        <button class="delete-card-btn">
-                            <i data-feather="trash-2" class="w-4 h-4"></i> Delete
-                        </button>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="font-medium">${card.title}</div>
-                    ${card.description ? `<div class="text-sm opacity-80 mt-1">${card.description}</div>` : ''}
-                </div>
-                <div class="card-meta">
-                    <div class="card-labels">
-                        ${cardLabels}
-                        ${dueDateHTML}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Set up event listeners for the card
-        setupCardEventListeners(cardElement, card);
-        
-        return cardElement;
-    }
-    
-    function setupCardEventListeners(card, cardData) {
-        const optionsBtn = card.querySelector('.card-options-btn');
-        const dropdown = card.querySelector('.card-dropdown');
-        
-        optionsBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking elsewhere
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('show');
-            }
-        });
-        
-        // Edit card button
-        const editCardBtn = card.querySelector('.edit-card-btn');
-        editCardBtn.addEventListener('click', () => {
-            currentCard = card;
-            showCardOptionsModal(card);
-            dropdown.classList.remove('show');
-        });
-        
-        // Delete card button
-        const deleteCardBtn = card.querySelector('.delete-card-btn');
-        deleteCardBtn.addEventListener('click', () => {
-            showDeleteConfirmModal('card', card);
-            dropdown.classList.remove('show');
-        });
-        
-        // Clicking on the card opens the editor
-        card.addEventListener('click', (e) => {
-            if (!e.target.closest('.card-dropdown') && !e.target.closest('.checklist-checkbox') && !e.target.closest('.card-checkbox')) {
-                currentCard = card;
-                showCardOptionsModal(card);
-            }
-        });
-        
-        // Card checkbox functionality
-        const cardCheckbox = card.querySelector('.card-checkbox');
-        cardCheckbox.addEventListener('click', (e) => {
-            e.stopPropagation();
+                    renderBoardsModal();
+                }, (error) => {
+                    console.error("Error getting boards:", error);
+                });
             
-            // Toggle the checked state
-            const isChecked = !cardCheckbox.classList.contains('checked');
-            const cardId = card.getAttribute('data-card-id');
-            const listId = card.closest('.list').getAttribute('data-list-id');
-            
-            // Update in Firestore
-            db.collection('users').doc(currentUser.uid)
+            // Listen for lists in the current board
+            listsUnsubscribe = db.collection('users').doc(currentUser.uid)
                 .collection('boards').doc(currentBoardId)
-                .collection('lists').doc(listId)
-                .collection('cards').doc(cardId)
-                .update({
-                    completed: isChecked
-                })
-                .then(() => {
-                    // Update UI after successful Firestore update
-                    cardCheckbox.classList.toggle('checked');
-                    card.classList.toggle('completed');
+                .collection('lists')
+                .orderBy('order') // <-- MODIFIED
+                .onSnapshot((snapshot) => {
+                    const listsData = { lists: [] };
+                    snapshot.forEach((doc) => {
+                        listsData.lists.push({ id: doc.id, ...doc.data() });
+                    });
+                    renderBoard(listsData);
                     
-                    // If checked, move to "Done" list if it exists
-                    if (isChecked) {
-                        const doneList = document.querySelector('.list:has(h3:contains("Done"))');
-                        if (doneList && !card.closest('.list').querySelector('h3').textContent.includes('Done')) {
-                            const listCards = doneList.querySelector('.list-cards');
-                            listCards.appendChild(card);
-                            
-                            // Update card's list reference in Firestore
-                            const newListId = doneList.getAttribute('data-list-id');
-                            
-                            db.collection('users').doc(currentUser.uid)
-                                .collection('boards').doc(currentBoardId)
-                                .collection('lists').doc(newListId)
-                                .collection('cards').doc(cardId)
-                                .update({
-                                    listId: newListId
-                                }).catch(error => {
-                                    console.error("Error updating card list:", error);
-                                });
-                            
-                            // Hide empty state if it exists
-                            const emptyState = listCards.querySelector('.empty-state');
-                            if (emptyState) {
-                                emptyState.remove();
-                            }
-                        }
+                    // Set up card listeners for each list
+                    snapshot.forEach((doc) => {
+                        const listId = doc.id;
+                        setupCardListenerForList(listId);
+                    });
+                }, (error) => {
+                    console.error("Error getting lists:", error);
+                });
+            
+            // Listen for labels in the current board
+            labelsUnsubscribe = db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(currentBoardId)
+                .collection('labels').onSnapshot((snapshot) => {
+                    labels = [];
+                    snapshot.forEach((doc) => {
+                        labels.push({ id: doc.id, ...doc.data() });
+                    });
+                    
+                    // Update labels in card modal if it's open
+                    if (currentCard) {
+                        renderLabelOptions(currentCard, currentCard.getAttribute('data-label-ids'));
                     }
-                })
-                .catch(error => {
-                    console.error("Error updating card completion status:", error);
+                }, (error) => {
+                    console.error("Error getting labels:", error);
                 });
-        });
-        
-        // Make the card draggable
-        card.addEventListener('dragstart', handleDragStart);
-        card.addEventListener('dragend', handleDragEnd);
-    }
-    
-    function getHeaderColor(bgColor) {
-        // Darken the color for the header
-        return bgColor === '#44444E' ? '#3A3A42' : 'rgba(0, 0, 0, 0.2)';
-    }
-    
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    }
+        }
 
-    function showAddCardForm(listElement) {
-        const addCardSection = listElement.querySelector('.add-card-section');
-        addCardSection.innerHTML = `
-            <div class="add-form">
-                <textarea placeholder="Enter a title for this card..." autofocus></textarea>
-                <div class="flex gap-2">
-                    <button class="btn btn-primary add-card-confirm">Add card</button>
-                    <button class="btn btn-secondary cancel-add-card">Cancel</button>
-                </div>
-            </div>
-        `;
-        
-        const textarea = addCardSection.querySelector('textarea');
-        const addButton = addCardSection.querySelector('.add-card-confirm');
-        const cancelButton = addCardSection.querySelector('.cancel-add-card');
-        
-        addButton.addEventListener('click', () => {
-            const content = textarea.value.trim();
-            if (content) {
-                addNewCard(listElement, content);
-            }
-        });
-        
-        cancelButton.addEventListener('click', () => {
-            renderAddCardButton(listElement);
-        });
-        
-        textarea.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                addButton.click();
+        function setupCardListenerForList(listId) {
+            // Remove existing listener if any
+            if (cardListeners[listId]) {
+                cardListeners[listId]();
             }
             
-            if (e.key === 'Escape') {
-                cancelButton.click();
-            }
-        });
-    }
-    
-    function renderAddCardButton(listElement) {
-        const addCardSection = listElement.querySelector('.add-card-section');
-        addCardSection.innerHTML = `
-            <button class="btn btn-secondary w-full add-card-btn">
-                <i data-feather="plus" class="w-4 h-4"></i> Add a card
-            </button>
-        `;
-        
-        feather.replace();
-        
-        const addCardBtn = addCardSection.querySelector('.add-card-btn');
-        addCardBtn.addEventListener('click', () => {
-            showAddCardForm(listElement);
-        });
-    }
-
-    function addNewCard(listElement, content) {
-        const listId = listElement.getAttribute('data-list-id');
-        const cardId = 'card-' + Date.now();
-        
-        // Add card to Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('lists').doc(listId)
-            .collection('cards').doc(cardId)
-            .set({
-                id: cardId,
-                title: content,
-                description: '',
-                dueDate: '',
-                labelIds: [],
-                listId: listId,
-                completed: false, // Add completed field with default value
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                console.log("Card added successfully");
-            }).catch((error) => {
-                console.error("Error adding card:", error);
-            });
-        
-        // Return to "Add card" button
-        renderAddCardButton(listElement);
-    }
-    
-    function showListOptionsModal(listElement) {
-        const modal = document.getElementById('list-options-modal');
-        const titleInput = document.getElementById('list-title-input');
-        const title = listElement.querySelector('.list-header h3').textContent;
-        
-        titleInput.value = title;
-        
-        // Set current color as selected
-        const currentColor = listElement.style.backgroundColor;
-        document.querySelectorAll('#list-options-modal .color-option').forEach(option => {
-            if (option.getAttribute('data-color') === currentColor) {
-                option.classList.add('selected');
-            } else {
-                option.classList.remove('selected');
-            }
-        });
-        
-        // Add event listeners to color options
-        document.querySelectorAll('#list-options-modal .color-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('#list-options-modal .color-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                option.classList.add('selected');
-            });
-        });
-        
-        // Save button
-        const saveBtn = document.getElementById('save-list-options');
-        saveBtn.onclick = () => {
-            const listId = listElement.getAttribute('data-list-id');
-            const newTitle = titleInput.value;
-            const selectedColor = document.querySelector('#list-options-modal .color-option.selected').getAttribute('data-color');
-            
-            // Update list in Firestore
-            db.collection('users').doc(currentUser.uid)
+            // Set up new listener for this list's cards
+            cardListeners[listId] = db.collection('users').doc(currentUser.uid)
                 .collection('boards').doc(currentBoardId)
                 .collection('lists').doc(listId)
-                .update({
-                    title: newTitle,
-                    color: selectedColor
-                }).then(() => {
-                    console.log("List updated successfully");
-                    modal.style.display = 'none';
-                }).catch((error) => {
-                    console.error("Error updating list:", error);
-                });
-        };
-        
-        // Delete button
-        const deleteBtn = document.getElementById('delete-list-btn');
-        deleteBtn.onclick = () => {
-            showDeleteConfirmModal('list', listElement);
-            modal.style.display = 'none';
-        };
-        
-        modal.style.display = 'flex';
-    }
-    
-    function showCardOptionsModal(card) {
-        const modal = document.getElementById('card-options-modal');
-        const titleInput = document.getElementById('card-title-input');
-        const descriptionInput = document.getElementById('card-description-input');
-        const dueDateInput = document.getElementById('card-due-date');
-        
-        const title = card.querySelector('.font-medium').textContent;
-        const description = card.querySelector('.opacity-80') ? card.querySelector('.opacity-80').textContent : '';
-        const dueDate = card.getAttribute('data-due-date') || '';
-        const labelIds = card.getAttribute('data-label-ids') || '';
-        
-        titleInput.value = title;
-        descriptionInput.value = description;
-        dueDateInput.value = dueDate;
-        
-        // Render label options
-        renderLabelOptions(card, labelIds);
-        
-        // Save button
-        const saveBtn = document.getElementById('save-card-options');
-        saveBtn.onclick = () => {
-            const cardId = card.getAttribute('data-card-id');
-            const listId = card.closest('.list').getAttribute('data-list-id');
-            const newTitle = titleInput.value;
-            const newDescription = descriptionInput.value;
-            const newDueDate = dueDateInput.value;
-            
-            // Get selected label IDs
-            const selectedLabelIds = [];
-            document.querySelectorAll('.label-option-minimal.selected').forEach(option => {
-                selectedLabelIds.push(option.getAttribute('data-label-id'));
-            });
-            
-            // Update card in Firestore
-            db.collection('users').doc(currentUser.uid)
-                .collection('boards').doc(currentBoardId)
-                .collection('lists').doc(listId)
-                .collection('cards').doc(cardId)
-                .update({
-                    title: newTitle,
-                    description: newDescription,
-                    dueDate: newDueDate,
-                    labelIds: selectedLabelIds
-                }).then(() => {
-                    console.log("Card updated successfully");
-                    modal.style.display = 'none';
-                }).catch((error) => {
-                    console.error("Error updating card:", error);
-                });
-        };
-        
-        modal.style.display = 'flex';
-    }
-    
-    function renderLabelOptions(card, labelIds) {
-        const labelOptionsContainer = document.getElementById('label-options');
-        labelOptionsContainer.innerHTML = '';
-        
-        const cardLabelIds = labelIds ? labelIds.split(',') : [];
-        
-        labels.forEach(label => {
-            const isSelected = cardLabelIds.includes(label.id);
-            const labelEl = document.createElement('div');
-            labelEl.className = `label-option-minimal ${isSelected ? 'selected' : ''}`;
-            labelEl.setAttribute('data-label-id', label.id);
-            labelEl.innerHTML = `
-                <span class="label-dot" style="background: ${label.color};"></span>
-                <span>${label.name}</span>
-            `;
-            
-            labelEl.addEventListener('click', () => {
-                labelEl.classList.toggle('selected');
-            });
-            
-            labelOptionsContainer.appendChild(labelEl);
-        });
-    }
-    
-    function updateCardLabels(card) {
-        const labelOptions = document.querySelectorAll('.label-option-minimal');
-        const selectedLabelIds = [];
-        
-        labelOptions.forEach(option => {
-            if (option.classList.contains('selected')) {
-                selectedLabelIds.push(option.getAttribute('data-label-id'));
-            }
-        });
-        
-        card.setAttribute('data-label-ids', selectedLabelIds.join(','));
-        
-        // Update card display
-        const labelsContainer = card.querySelector('.card-labels');
-        const dueDateEl = card.querySelector('.due-date');
-        
-        // Clear existing labels (but keep due date)
-        Array.from(labelsContainer.children).forEach(child => {
-            if (!child.classList.contains('due-date')) {
-                child.remove();
-            }
-        });
-        
-        // Add selected labels as text labels
-        selectedLabelIds.forEach(id => {
-            const label = labels.find(l => l.id === id);
-            if (label) {
-                const labelEl = document.createElement('span');
-                labelEl.className = 'label';
-                labelEl.style.background = label.color;
-                labelEl.textContent = label.name;
-                
-                if (dueDateEl) {
-                    labelsContainer.insertBefore(labelEl, dueDateEl);
-                } else {
-                    labelsContainer.appendChild(labelEl);
-                }
-            }
-        });
-    }
-    
-    function updateCardDueDate(card, dueDate) {
-        const labelsContainer = card.querySelector('.card-labels');
-        let dueDateEl = card.querySelector('.due-date');
-        
-        if (!dueDateEl) {
-            dueDateEl = document.createElement('span');
-            dueDateEl.className = 'due-date';
-            
-            const icon = document.createElement('i');
-            icon.setAttribute('data-feather', 'calendar');
-            icon.className = 'w-3 h-3';
-            dueDateEl.appendChild(icon);
-            
-            labelsContainer.appendChild(dueDateEl);
-            feather.replace();
-        }
-        
-        dueDateEl.innerHTML = `
-            <i data-feather="calendar" class="w-3 h-3"></i> ${formatDate(dueDate)}
-        `;
-        feather.replace();
-    }
-
-    function addNewList() {
-        const listId = 'list-' + Date.now();
-        const listTitle = 'New List';
-        const listColor = '#44444E';
-        
-        // Add list to Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('lists').doc(listId)
-            .set({
-                id: listId,
-                title: listTitle,
-                color: listColor,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                console.log("List added successfully");
-            }).catch((error) => {
-                console.error("Error adding list:", error);
-            });
-    }
-    
-    function showDeleteConfirmModal(type, element) {
-        const modal = document.getElementById('delete-confirm-modal');
-        const message = document.getElementById('delete-confirm-message');
-        const confirmBtn = document.getElementById('confirm-delete-btn');
-        
-        if (type === 'list') {
-            message.textContent = 'Are you sure you want to delete this list and all its cards?';
-            confirmBtn.onclick = () => {
-                const listId = element.getAttribute('data-list-id');
-                
-                // Delete list from Firestore
-                db.collection('users').doc(currentUser.uid)
-                    .collection('boards').doc(currentBoardId)
-                    .collection('lists').doc(listId)
-                    .delete().then(() => {
-                        console.log("List deleted successfully");
-                        modal.style.display = 'none';
-                    }).catch((error) => {
-                        console.error("Error deleting list:", error);
-                    });
-            };
-        } else if (type === 'card') {
-            message.textContent = 'Are you sure you want to delete this card?';
-            confirmBtn.onclick = () => {
-                const cardId = element.getAttribute('data-card-id');
-                const listId = element.closest('.list').getAttribute('data-list-id');
-                
-                // Delete card from Firestore
-                db.collection('users').doc(currentUser.uid)
-                    .collection('boards').doc(currentBoardId)
-                    .collection('lists').doc(listId)
-                    .collection('cards').doc(cardId)
-                    .delete().then(() => {
-                        console.log("Card deleted successfully");
-                        modal.style.display = 'none';
-                    }).catch((error) => {
-                        console.error("Error deleting card:", error);
-                    });
-            };
-        } else if (type === 'label') {
-            message.textContent = 'Are you sure you want to delete this label? This will remove it from all cards.';
-            confirmBtn.onclick = () => {
-                deleteLabel(element);
-                modal.style.display = 'none';
-            };
-        } else if (type === 'board') {
-            message.textContent = 'Are you sure you want to delete this board and all its content?';
-            confirmBtn.onclick = () => {
-                deleteBoard(element);
-                modal.style.display = 'none';
-            };
-        }
-        
-        modal.style.display = 'flex';
-    }
-    
-    function checkEmptyList(list) {
-        const cardsContainer = list.querySelector('.list-cards');
-        if (cardsContainer.children.length === 0) {
-            const emptyState = document.createElement('div');
-            emptyState.className = 'empty-state';
-            emptyState.innerHTML = '<i data-feather="inbox" class="w-6 h-6 mx-auto mb-2"></i><p>No cards</p>';
-            cardsContainer.appendChild(emptyState);
-            feather.replace();
-        }
-    }
-    
-    function checkEmptyBoard() {
-        const board = document.getElementById('board');
-        if (board.children.length === 0) {
-            // Optionally add an empty board state
-        }
-    }
-
-    function setupEventListeners() {
-        document.getElementById('add-list-btn').addEventListener('click', addNewList);
-        
-        // Close modals
-        document.querySelectorAll('.close-modal').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-            });
-        });
-        
-        // Click outside modals to close
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-            }
-        });
-        
-        // Manage labels button
-        document.getElementById('manage-labels-btn').addEventListener('click', showManageLabelsModal);
-        
-        // Add new label button in manage modal
-        document.getElementById('add-new-label-btn').addEventListener('click', () => {
-            document.getElementById('manage-labels-modal').style.display = 'none';
-            showAddLabelModal();
-        });
-
-        // Save new label button
-        document.getElementById('save-new-label').addEventListener('click', addNewLabel);
-        
-        // Save edit label button
-        document.getElementById('save-edit-label').addEventListener('click', saveEditedLabel);
-        
-        // Boards modal button
-        document.getElementById('boards-modal-btn').addEventListener('click', () => {
-            document.getElementById('boards-modal').style.display = 'flex';
-        });
-        
-        // Create board modal button
-        document.getElementById('create-board-modal-btn').addEventListener('click', () => {
-            document.getElementById('create-board-modal').style.display = 'flex';
-        });
-        
-        // Create new board button
-        document.getElementById('create-board-btn').addEventListener('click', createNewBoard);
-        
-        // Update board preview when title changes
-        document.getElementById('new-board-title').addEventListener('input', updateBoardPreview);
-        
-        // Color options for new board
-        document.querySelectorAll('#create-board-modal .color-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('#create-board-modal .color-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                option.classList.add('selected');
-                updateBoardPreview();
-            });
-        });
-        
-        // ESC key to close modals
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-            }
-        });
-    }
-    
-    function setupBoardDragging() {
-        const board = document.getElementById('board');
-        
-        board.addEventListener('mousedown', (e) => {
-            // Only enable board dragging when clicking directly on the board, not on lists or cards
-            if (e.target === board) {
-                isDragging = true;
-                startX = e.pageX - board.offsetLeft;
-                scrollLeft = board.scrollLeft;
-                
-                board.style.cursor = 'grabbing';
-                board.style.userSelect = 'none';
-            }
-        });
-        
-        board.addEventListener('mouseleave', () => {
-            isDragging = false;
-            board.style.cursor = 'grab';
-            board.style.userSelect = 'auto';
-        });
-        
-        board.addEventListener('mouseup', () => {
-            isDragging = false;
-            board.style.cursor = 'grab';
-            board.style.userSelect = 'auto';
-        });
-        
-        board.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - board.offsetLeft;
-            const walkX = (x - startX) * 2;
-            board.scrollLeft = scrollLeft - walkX;
-        });
-    }
-    
-    function setupVerticalPageScrolling() {
-        document.addEventListener('mousedown', (e) => {
-            // Only start vertical scrolling with left mouse button
-            if (e.button === 0 && !e.target.closest('.card') && !e.target.closest('.list') && !e.target.closest('.modal')) {
-                isVerticalScrolling = true;
-                verticalScrollStartY = e.clientY;
-                verticalScrollStartTop = window.scrollY;
-                
-                // Change cursor to indicate scrolling
-                document.body.style.cursor = 'grabbing';
-                document.body.style.userSelect = 'none';
-            }
-        });
-        
-        document.addEventListener('mouseup', () => {
-            isVerticalScrolling = false;
-            document.body.style.cursor = '';
-            document.body.style.userSelect = 'auto';
-        });
-        
-        document.addEventListener('mousemove', (e) => {
-            if (!isVerticalScrolling) return;
-            
-            e.preventDefault();
-            const deltaY = e.clientY - verticalScrollStartY;
-            window.scrollTo(0, verticalScrollStartTop - deltaY);
-        });
-        
-        // Stop vertical scrolling when mouse leaves the window
-        document.addEventListener('mouseleave', () => {
-            isVerticalScrolling = false;
-            document.body.style.cursor = '';
-            document.body.style.userSelect = 'auto';
-        });
-    }
-    
-    function setupContextMenu() {
-        const contextMenu = document.getElementById('context-menu');
-        
-        // Right-click to open context menu
-        document.addEventListener('contextmenu', (e) => {
-            if (e.target.closest('.card')) {
-                e.preventDefault();
-                currentCard = e.target.closest('.card');
-                
-                // Position the context menu at the cursor position
-                contextMenu.style.display = 'block';
-                contextMenu.style.left = `${e.pageX}px`;
-                contextMenu.style.top = `${e.pageY}px`;
-                
-                // Add event listeners to context menu buttons
-                const editBtn = contextMenu.querySelector('.edit-card-btn');
-                const deleteBtn = contextMenu.querySelector('.delete-card-btn');
-                
-                editBtn.onclick = () => {
-                    contextMenu.style.display = 'none';
-                    showCardOptionsModal(currentCard);
-                };
-                
-                deleteBtn.onclick = () => {
-                    contextMenu.style.display = 'none';
-                    showDeleteConfirmModal('card', currentCard);
-                };
-            }
-        });
-        
-        // Click anywhere to close context menu
-        document.addEventListener('click', () => {
-            contextMenu.style.display = 'none';
-        });
-    }
-    
-    function showAddLabelModal() {
-        document.getElementById('add-label-modal').style.display = 'flex';
-        
-        // Set up color options
-        document.querySelectorAll('#add-label-modal .color-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('#add-label-modal .color-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                option.classList.add('selected');
-            });
-        });
-    }
-    
-    function showEditLabelModal(label) {
-        currentEditingLabel = label;
-        const modal = document.getElementById('edit-label-modal');
-        const nameInput = document.getElementById('edit-label-name-input');
-        
-        nameInput.value = label.name;
-        
-        // Set current color as selected
-        document.querySelectorAll('#edit-label-color-options .color-option').forEach(option => {
-            if (option.getAttribute('data-color') === label.color) {
-                option.classList.add('selected');
-            } else {
-                option.classList.remove('selected');
-            }
-        });
-        
-        // Add event listeners to color options
-        document.querySelectorAll('#edit-label-color-options .color-option').forEach(option => {
-            option.addEventListener('click', () => {
-                document.querySelectorAll('#edit-label-color-options .color-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                option.classList.add('selected');
-            });
-        });
-        
-        modal.style.display = 'flex';
-    }
-    
-    function saveEditedLabel() {
-        if (!currentEditingLabel) return;
-        
-        const nameInput = document.getElementById('edit-label-name-input');
-        const name = nameInput.value.trim();
-        
-        if (!name) {
-            alert('Please enter a label name');
-            return;
-        }
-        
-        const color = document.querySelector('#edit-label-color-options .color-option.selected').getAttribute('data-color');
-        
-        // Update the label in Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('labels').doc(currentEditingLabel.id)
-            .update({
-                name: name,
-                color: color
-            }).then(() => {
-                console.log("Label updated successfully");
-                document.getElementById('edit-label-modal').style.display = 'none';
-            }).catch((error) => {
-                console.error("Error updating label:", error);
-            });
-    }
-    
-    function updateCardsWithLabel(labelId) {
-        const label = labels.find(l => l.id === labelId);
-        if (!label) return;
-        
-        document.querySelectorAll('.card').forEach(card => {
-            const labelIds = card.getAttribute('data-label-ids');
-            if (labelIds && labelIds.includes(labelId)) {
-                // Update the label display
-                const labelsContainer = card.querySelector('.card-labels');
-                const labelEl = labelsContainer.querySelector(`.label[style*="${label.color}"]`);
-                
-                if (labelEl) {
-                    labelEl.textContent = label.name;
-                    labelEl.style.background = label.color;
-                }
-                
-                // Refresh the label options in the card modal if it's open
-                if (currentCard && currentCard.getAttribute('data-card-id') === card.getAttribute('data-card-id')) {
-                    renderLabelOptions(currentCard, currentCard.getAttribute('data-label-ids'));
-                }
-            }
-        });
-    }
-    
-    function deleteLabel(labelId) {
-        // Remove the label from Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('labels').doc(labelId)
-            .delete().then(() => {
-                console.log("Label deleted successfully");
-            }).catch((error) => {
-                console.error("Error deleting label:", error);
-            });
-    }
-    
-    function showManageLabelsModal() {
-        const modal = document.getElementById('manage-labels-modal');
-        const labelsList = document.getElementById('labels-list');
-        labelsList.innerHTML = '';
-        
-        // Create label management UI for each label
-        labels.forEach(label => {
-            const labelEl = document.createElement('div');
-            labelEl.className = 'label-management';
-            labelEl.innerHTML = `
-                <div class="flex items-center gap-2">
-                    <span class="color-dot w-4 h-4 rounded-full" style="background: ${label.color};"></span>
-                    <span>${label.name}</span>
-                </div>
-                <div class="label-actions">
-                    <button class="btn-icon edit-label-btn" data-label-id="${label.id}">
-                        <i data-feather="edit-2" class="w-4 h-4"></i>
-                    </button>
-                    <button class="btn-icon delete-label-btn" data-label-id="${label.id}">
-                        <i data-feather="trash-2" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            `;
-            
-            labelsList.appendChild(labelEl);
-        });
-        
-        feather.replace();
-        
-        // Add event listeners for edit and delete buttons
-        document.querySelectorAll('.edit-label-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const labelId = e.currentTarget.getAttribute('data-label-id');
-                const label = labels.find(l => l.id === labelId);
-                if (label) {
-                    // Close the manage labels modal first
-                    document.getElementById('manage-labels-modal').style.display = 'none';
-                    showEditLabelModal(label);
-                }
-            });
-        });
-        
-        document.querySelectorAll('.delete-label-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const labelId = e.currentTarget.getAttribute('data-label-id');
-                // Close the manage labels modal first
-                document.getElementById('manage-labels-modal').style.display = 'none';
-                showDeleteConfirmModal('label', labelId);
-            });
-        });
-        
-        modal.style.display = 'flex';
-    }
-    
-    function addNewLabel() {
-        const nameInput = document.getElementById('label-name-input');
-        const name = nameInput.value.trim();
-        
-        if (!name) {
-            alert('Please enter a label name');
-            return;
-        }
-        
-        const color = document.querySelector('#add-label-modal .color-option.selected').getAttribute('data-color');
-        const newLabelId = 'label-' + Date.now();
-        
-        // Add label to Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(currentBoardId)
-            .collection('labels').doc(newLabelId)
-            .set({
-                id: newLabelId,
-                name: name,
-                color: color,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                console.log("Label added successfully");
-                document.getElementById('add-label-modal').style.display = 'none';
-                nameInput.value = '';
-            }).catch((error) => {
-                console.error("Error adding label:", error);
-            });
-    }
-
-    function attachDragAndDrop() {
-        const cards = document.querySelectorAll('.card');
-        const lists = document.querySelectorAll('.list-cards');
-        
-        cards.forEach(card => {
-            card.addEventListener('dragstart', handleDragStart);
-            card.addEventListener('dragend', handleDragEnd);
-        });
-        
-        lists.forEach(list => {
-            list.addEventListener('dragover', handleDragOver);
-            list.addEventListener('dragenter', handleDragEnter);
-            list.addEventListener('dragleave', handleDragLeave);
-            list.addEventListener('drop', handleDrop);
-        });
-    }
-    
-    function setupListDragAndDrop() {
-        const board = document.getElementById('board');
-        const lists = document.querySelectorAll('.list');
-        
-        lists.forEach(list => {
-            list.addEventListener('dragover', handleListDragOver);
-            list.addEventListener('dragenter', handleListDragEnter);
-            list.addEventListener('dragleave', handleListDragLeave);
-            list.addEventListener('drop', handleListDrop);
-        });
-        
-        board.addEventListener('dragover', handleListDragOver);
-        board.addEventListener('drop', handleListDrop);
-    }
-
-    function handleDragStart(e) {
-        // Store the original list ID for checking empty state later
-        const originListId = this.closest('.list').getAttribute('data-list-id');
-        e.dataTransfer.setData('origin-list-id', originListId);
-        
-        // Stop event from bubbling to prevent list drag start
-        e.stopPropagation();
-        this.classList.add('dragging');
-        e.dataTransfer.setData('text/plain', this.getAttribute('data-card-id'));
-        e.dataTransfer.setData('type', 'card');
-    }
-
-    function handleDragEnd(e) {
-        // Stop event from bubbling to prevent list drag end
-        e.stopPropagation();
-        this.classList.remove('dragging');
-        
-        // Remove drag-over class from all lists
-        document.querySelectorAll('.list-cards').forEach(list => {
-            list.classList.remove('drag-over');
-        });
-    }
-
-    function handleDragOver(e) {
-        e.preventDefault();
-    }
-
-    function handleDragEnter(e) {
-        e.preventDefault();
-        this.classList.add('drag-over');
-    }
-
-    function handleDragLeave() {
-        this.classList.remove('drag-over');
-    }
-
-    function handleDrop(e) {
-        e.preventDefault();
-        this.classList.remove('drag-over');
-        
-        const type = e.dataTransfer.getData('type');
-        if (type !== 'card') return;
-        
-        const cardId = e.dataTransfer.getData('text/plain');
-        const card = document.querySelector(`[data-card-id="${cardId}"]`);
-        const originListId = e.dataTransfer.getData('origin-list-id');
-        const originList = document.querySelector(`[data-list-id="${originListId}"]`);
-        const targetListId = this.closest('.list').getAttribute('data-list-id');
-        
-        if (card && this !== card.parentNode) {
-            this.appendChild(card);
-            
-            // FIXED: Properly update card's list reference in Firestore
-            // Get the card reference from the original list
-            const cardRef = db.collection('users').doc(currentUser.uid)
-                .collection('boards').doc(currentBoardId)
-                .collection('lists').doc(originListId)
-                .collection('cards').doc(cardId);
-            
-            // Get the card data
-            cardRef.get().then((doc) => {
-                if (doc.exists) {
-                    const cardData = doc.data();
+                .collection('cards')
+                .orderBy('createdAt', 'asc')
+                .onSnapshot((snapshot) => {
+                    const listElement = document.querySelector(`[data-list-id="${listId}"]`);
+                    if (!listElement) return;
                     
-                    // Delete the card from the original list
-                    cardRef.delete().then(() => {
-                        // Add the card to the new list with updated listId
-                        db.collection('users').doc(currentUser.uid)
-                            .collection('boards').doc(currentBoardId)
-                            .collection('lists').doc(targetListId)
-                            .collection('cards').doc(cardId)
-                            .set({
-                                ...cardData,
-                                listId: targetListId
-                            }).then(() => {
-                                console.log("Card moved successfully");
-                            }).catch((error) => {
-                                console.error("Error adding card to new list:", error);
-                            });
-                    }).catch((error) => {
-                        console.error("Error deleting card from old list:", error);
-                    });
-                }
-            }).catch((error) => {
-                console.error("Error getting card data:", error);
-            });
-            
-            // Hide empty state if it exists
-            const emptyState = this.querySelector('.empty-state');
-            if (emptyState) {
-                emptyState.remove();
-            }
-            
-            // Check if the original list is now empty
-            if (originList && originListId !== targetListId) {
-                checkEmptyList(originList);
-            }
+                    const cardsContainer = listElement.querySelector('.list-cards');
+                    cardsContainer.innerHTML = '';
+                    
+                    if (snapshot.empty) {
+                        cardsContainer.innerHTML = '<div class="empty-state"><i data-feather="inbox" class="w-6 h-6 mx-auto mb-2"></i><p>No cards</p></div>';
+                    } else {
+                        snapshot.forEach((doc) => {
+                            const card = { id: doc.id, ...doc.data() };
+                            const cardElement = createCardElement(card);
+                            cardsContainer.appendChild(cardElement);
+                        });
+                    }
+                    
+                    feather.replace();
+                }, (error) => {
+                    console.error("Error getting cards for list:", listId, error);
+                });
         }
-    }
-    
-    function handleListDragStart(e) {
-        // Only start list drag if not dragging a card
-        if (e.target.closest('.card')) {
-            e.preventDefault();
-            return false;
+
+        function getFormattedDate(daysFromNow) {
+            const date = new Date();
+            date.setDate(date.getDate() + daysFromNow);
+            return date.toISOString().split('T')[0];
         }
-        
-        isDraggingList = true;
-        draggedList = this;
-        this.classList.add('list-dragging');
-        e.dataTransfer.setData('text/plain', this.getAttribute('data-list-id'));
-        e.dataTransfer.setData('type', 'list');
-        e.dataTransfer.effectAllowed = 'move';
-    }
 
-    function handleListDragEnd() {
-        isDraggingList = false;
-        draggedList = null;
-        document.querySelectorAll('.list').forEach(list => {
-            list.classList.remove('list-dragging');
-            list.classList.remove('list-drag-over');
-        });
-    }
-
-    function handleListDragOver(e) {
-        if (!isDraggingList) return;
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-    }
-
-    function handleListDragEnter(e) {
-        if (!isDraggingList || this === draggedList) return;
-        e.preventDefault();
-        this.classList.add('list-drag-over');
-    }
-
-    function handleListDragLeave() {
-        this.classList.remove('list-drag-over');
-    }
-
-    function handleListDrop(e) {
-        if (!isDraggingList) return;
-        e.preventDefault();
-        
-        const type = e.dataTransfer.getData('type');
-        if (type !== 'list') return;
-        
-        const listId = e.dataTransfer.getData('text/plain');
-        const list = document.querySelector(`[data-list-id="${listId}"]`);
-        
-        if (list && this !== list) {
+        function renderBoard(data) {
             const board = document.getElementById('board');
-            const afterElement = getDragAfterElement(board, e.clientX);
+            board.innerHTML = '';
             
-            if (afterElement) {
-                board.insertBefore(list, afterElement);
-            } else {
-                board.appendChild(list);
-            }
-        }
-        
-        document.querySelectorAll('.list').forEach(list => {
-            list.classList.remove('list-drag-over');
-        });
-    }
-    
-    function getDragAfterElement(container, x) {
-        const draggableElements = [...container.querySelectorAll('.list:not(.list-dragging)')];
-        
-        return draggableElements.reduce((closest, child) => {
-            const box = child.getBoundingClientRect();
-            const offset = x - box.left - box.width / 2;
-            
-            if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child };
-            } else {
-                return closest;
-            }
-        }, { offset: Number.NEGATIVE_INFINITY }).element;
-    }
-    
-    // NEW: Boards modal functions
-    function renderBoardsModal() {
-        const boardsGrid = document.getElementById('boards-grid');
-        boardsGrid.innerHTML = '';
-        
-        boards.forEach(board => {
-            const boardCard = document.createElement('div');
-            boardCard.className = 'board-card';
-            boardCard.style.backgroundColor = board.color;
-            boardCard.setAttribute('data-board-id', board.id);
-            
-            boardCard.innerHTML = `
-                <div class="board-card-title">${board.title}</div>
-                <div class="board-card-star ${board.starred ? 'starred' : ''}" data-board-id="${board.id}">
-                    <i data-feather="${board.starred ? 'star' : 'star'}" class="w-4 h-4"></i>
-                </div>
-                <div class="board-card-delete" data-board-id="${board.id}">
-                    <i data-feather="trash-2" class="w-4 h-4"></i>
-                </div>
-            `;
-            
-            boardsGrid.appendChild(boardCard);
-            
-            // Add event listener for star
-            const star = boardCard.querySelector('.board-card-star');
-            star.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleBoardStar(board.id);
+            data.lists.forEach(list => {
+                const listElement = createListElement(list);
+                board.appendChild(listElement);
             });
             
-            // Add event listener for delete
-            const deleteBtn = boardCard.querySelector('.board-card-delete');
-            deleteBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showDeleteConfirmModal('board', board.id);
-            });
-            
-            // Add event listener for board selection
-            boardCard.addEventListener('click', () => {
-                switchBoard(board.id);
-            });
-        });
-        
-        // Add create board card
-        const createBoardCard = document.createElement('div');
-        createBoardCard.className = 'board-card create-board-card';
-        createBoardCard.innerHTML = `
-            <i data-feather="plus" class="w-6 h-6"></i>
-            <div>Create new board</div>
-        `;
-        
-        createBoardCard.addEventListener('click', () => {
-            document.getElementById('create-board-modal').style.display = 'flex';
-        });
-        
-        boardsGrid.appendChild(createBoardCard);
-        
-        feather.replace();
-    }
-    
-    function toggleBoardStar(boardId) {
-        const board = boards.find(b => b.id === boardId);
-        if (board) {
-            const newStarredStatus = !board.starred;
-            
-            // Update board in Firestore
-            db.collection('users').doc(currentUser.uid)
-                .collection('boards').doc(boardId)
-                .update({
-                    starred: newStarredStatus
-                }).then(() => {
-                    console.log("Board starred status updated");
-                }).catch((error) => {
-                    console.error("Error updating board star:", error);
-                });
-        }
-    }
-    
-    function switchBoard(boardId) {
-        currentBoardId = boardId;
-        document.getElementById('boards-modal').style.display = 'none';
-        
-        // Set up listeners for the new board
-        setupFirestoreListeners();
-    }
-    
-    function deleteBoard(boardId) {
-        // Delete board from Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(boardId)
-            .delete().then(() => {
-                console.log("Board deleted successfully");
-                
-                // If we deleted the current board, switch to the first available board
-                if (currentBoardId === boardId) {
-                    currentBoardId = boards.length > 1 ? boards.find(b => b.id !== boardId).id : 'default-board';
-                    setupFirestoreListeners();
-                }
-            }).catch((error) => {
-                console.error("Error deleting board:", error);
-            });
-    }
-    
-    function updateBoardPreview() {
-        const titleInput = document.getElementById('new-board-title');
-        const preview = document.getElementById('create-board-preview');
-        const selectedColor = document.querySelector('#create-board-modal .color-option.selected').getAttribute('data-color');
-        
-        preview.textContent = titleInput.value || 'Board Title';
-        preview.style.backgroundColor = selectedColor;
-    }
-    
-    function createNewBoard() {
-        const titleInput = document.getElementById('new-board-title');
-        const title = titleInput.value.trim();
-        
-        if (!title) {
-            alert('Please enter a board title');
-            return;
-        }
-        
-        const selectedColor = document.querySelector('#create-board-modal .color-option.selected').getAttribute('data-color');
-        const newBoardId = 'board-' + Date.now();
-        
-        // Add board to Firestore
-        db.collection('users').doc(currentUser.uid)
-            .collection('boards').doc(newBoardId)
-            .set({
-                id: newBoardId,
-                title: title,
-                color: selectedColor,
-                starred: false,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                console.log("Board created successfully");
-                
-                // Reset form
-                titleInput.value = '';
-                document.querySelector('#create-board-modal .color-option').classList.add('selected');
-                updateBoardPreview();
-                
-                // Close the modal
-                document.getElementById('create-board-modal').style.display = 'none';
-            }).catch((error) => {
-                console.error("Error creating board:", error);
-            });
-    }
-    
-    // NEW: Setup trash bin for recycle functionality
-    function setupTrashBin() {
-        const trashBin = document.getElementById('trash-bin');
-        
-        // Make the trash bin a drop target
-        trashBin.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            trashBin.classList.add('drag-over');
-        });
-        
-        trashBin.addEventListener('dragenter', (e) => {
-            e.preventDefault();
-            trashBin.classList.add('drag-over');
-        });
-        
-        trashBin.addEventListener('dragleave', () => {
-            trashBin.classList.remove('drag-over');
-        });
-        
-        trashBin.addEventListener('drop', (e) => {
-            e.preventDefault();
-            trashBin.classList.remove('drag-over');
-            
-            const type = e.dataTransfer.getData('type');
-            const id = e.dataTransfer.getData('text/plain');
-            
-            if (type === 'card') {
-                const card = document.querySelector(`[data-card-id="${id}"]`);
-                if (card) {
-                    showDeleteConfirmModal('card', card);
-                }
-            } else if (type === 'list') {
-                const list = document.querySelector(`[data-list-id="${id}"]`);
-                if (list) {
-                    showDeleteConfirmModal('list', list);
-                }
-            }
-        });
-        
-        // Add click event to show recycle bin modal
-        trashBin.addEventListener('click', () => {
-            showRecycleBinModal();
-        });
-    }
-    
-    // NEW: Show recycle bin modal with deleted items
-    function showRecycleBinModal() {
-        const modal = document.getElementById('recycle-bin-modal');
-        const content = document.getElementById('recycle-bin-content');
-        
-        if (deletedItems.length === 0) {
-            content.innerHTML = `
-                <div class="empty-recycle">
-                    <i data-feather="inbox" class="w-12 h-12 mx-auto"></i>
-                    <p>Your recycle bin is empty</p>
-            </div>
-            `;
-        } else {
-            content.innerHTML = '';
-            
-            deletedItems.forEach((item, index) => {
-                const itemEl = document.createElement('div');
-                itemEl.className = 'recycle-item';
-                itemEl.innerHTML = `
-                    <div class="recycle-item-info">
-                        <div class="recycle-item-type">${item.type === 'card' ? 'Card' : 'List'}</div>
-                        <div class="recycle-item-name">${item.title}</div>
-                        <div class="recycle-item-date">Deleted: ${formatDateTime(item.deletedAt)}</div>
-                        ${item.type === 'card' ? `<div class="recycle-item-date">From: ${item.listTitle}</div>` : ''}
-                    </div>
-                    <div class="recycle-item-actions">
-                        <button class="btn-icon restore-item" data-index="${index}">
-                            <i data-feather="rotate-ccw" class="w-4 h-4"></i>
-                        </button>
-                        <button class="btn-icon delete-permanent" data-index="${index}">
-                            <i data-feather="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                `;
-                
-                content.appendChild(itemEl);
-            });
-            
-            // Add event listeners for restore and permanent delete buttons
-            document.querySelectorAll('.restore-item').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const index = e.currentTarget.getAttribute('data-index');
-                    restoreItem(index);
-                });
-            });
-            
-            document.querySelectorAll('.delete-permanent').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const index = e.currentTarget.getAttribute('data-index');
-                    deletePermanent(index);
-                });
-            });
-        }
-        
-        feather.replace();
-        modal.style.display = 'flex';
-    }
-    
-    // NEW: Format date and time for display
-    function formatDateTime(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    }
-    
-    // NEW: Restore item from recycle bin
-    function restoreItem(index) {
-        const item = deletedItems[index];
-        
-        if (item.type === 'card') {
-            // Find the list to restore the card to
-            const list = document.querySelector(`[data-list-id="${item.listId}"]`);
-            if (list) {
-                const cardsContainer = list.querySelector('.list-cards');
-                
-                // Remove empty state if it exists
-                const emptyState = cardsContainer.querySelector('.empty-state');
-                if (emptyState) {
-                    emptyState.remove();
-                }
-                
-                // Create a temporary container and parse the HTML string
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = item.html;
-                const cardEl = tempDiv.firstElementChild;
-                
-                // Set up event listeners for the restored card
-                setupCardEventListeners(cardEl);
-                
-                // Make the card draggable
-                cardEl.addEventListener('dragstart', handleDragStart);
-                cardEl.addEventListener('dragend', handleDragEnd);
-                
-                cardsContainer.appendChild(cardEl);
-                
-                // Add card back to Firestore
-                db.collection('users').doc(currentUser.uid)
-                    .collection('boards').doc(currentBoardId)
-                    .collection('lists').doc(item.listId)
-                    .collection('cards').doc(item.id)
-                    .set({
-                        id: item.id,
-                        title: item.title,
-                        description: item.description || '',
-                        dueDate: item.dueDate || '',
-                        labelIds: item.labelIds || [],
-                        listId: item.listId,
-                        completed: item.completed || false, // Include completed status
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }).then(() => {
-                        console.log("Card restored successfully");
-                    }).catch((error) => {
-                        console.error("Error restoring card:", error);
-                    });
-                
-                // Replace icons
-                feather.replace();
-            }
-        } else if (item.type === 'list') {
-            // Restore the list to the board
-            const board = document.getElementById('board');
-            
-            // Create a temporary container and parse the HTML string
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = item.html;
-            const listEl = tempDiv.firstElementChild;
-            
-            board.appendChild(listEl);
-            
-            // Add list back to Firestore
-            db.collection('users').doc(currentUser.uid)
-                .collection('boards').doc(currentBoardId)
-                .collection('lists').doc(item.id)
-                .set({
-                    id: item.id,
-                    title: item.title,
-                    color: item.color || '#44444E',
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                }).then(() => {
-                    console.log("List restored successfully");
-                }).catch((error) => {
-                    console.error("Error restoring list:", error);
-                });
-            
-            // Set up event listeners for the restored list
-            const addCardBtn = listEl.querySelector('.add-card-btn');
-            addCardBtn.addEventListener('click', () => {
-                showAddCardForm(listEl);
-            });
-            
-            // Set up list dragging
-            listEl.addEventListener('dragstart', handleListDragStart);
-            listEl.addEventListener('dragend', handleListDragEnd);
-            
-            // Replace icons
+            // Replace all icons after all lists are rendered
             feather.replace();
+        }
+
+        function createListElement(list) {
+            const listElement = document.createElement('div');
+            listElement.className = 'list animate-in';
+            listElement.setAttribute('data-list-id', list.id);
+            listElement.setAttribute('draggable', 'true');
+            listElement.style.backgroundColor = list.color || '#44444E';
             
-            // Set up dropdown for the restored list
-            const dropdownBtn = listEl.querySelector('.list-options-btn');
-            const dropdown = listEl.querySelector('.dropdown');
+            const listHTML = `
+                <div class="list-header" style="background: ${getHeaderColor(list.color || '#44444E')};">
+                    <h3 class="text-sm font-semibold">${list.title}</h3>
+                    <div class="dropdown">
+                        <button class="btn-icon list-options-btn">
+                            <i data-feather="more-horizontal" class="w-4 h-4"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <button class="edit-list-btn">
+                                <i data-feather="edit-2" class="w-4 h-4"></i> Edit List
+                            </button>
+                            <button class="delete-list-btn">
+                                <i data-feather="trash-2" class="w-4 h-4"></i> Delete List
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-cards">
+                    <div class="empty-state"><i data-feather="inbox" class="w-6 h-6 mx-auto mb-2"></i><p>No cards</p></div>
+                </div>
+                <div class="add-card-section">
+                    <button class="btn btn-secondary w-full add-card-btn">
+                        <i data-feather="plus" class="w-4 h-4"></i> Add a card
+                    </button>
+                </div>
+            `;
+            
+            listElement.innerHTML = listHTML;
+            
+            // Add event listeners to the list
+            const addCardBtn = listElement.querySelector('.add-card-btn');
+            addCardBtn.addEventListener('click', () => {
+                showAddCardForm(listElement);
+            });
+            
+            // Add event listeners to dropdown
+            const dropdownBtn = listElement.querySelector('.list-options-btn');
+            const dropdown = listElement.querySelector('.dropdown');
             
             dropdownBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -3078,100 +1528,1659 @@
             });
             
             // Edit list button
-            const editListBtn = listEl.querySelector('.edit-list-btn');
+            const editListBtn = listElement.querySelector('.edit-list-btn');
             editListBtn.addEventListener('click', () => {
-                currentList = listEl;
-                showListOptionsModal(listEl);
+                currentList = listElement;
+                showListOptionsModal(listElement);
                 dropdown.classList.remove('show');
             });
             
             // Delete list button
-            const deleteListBtn = listEl.querySelector('.delete-list-btn');
+            const deleteListBtn = listElement.querySelector('.delete-list-btn');
             deleteListBtn.addEventListener('click', () => {
-                showDeleteConfirmModal('list', listEl);
+                showDeleteConfirmModal('list', listElement);
                 dropdown.classList.remove('show');
             });
             
             // Make the list a drop target
-            const listCards = listEl.querySelector('.list-cards');
+            const listCards = listElement.querySelector('.list-cards');
             listCards.addEventListener('dragover', handleDragOver);
             listCards.addEventListener('dragenter', handleDragEnter);
             listCards.addEventListener('dragleave', handleDragLeave);
             listCards.addEventListener('drop', handleDrop);
+            
+            // Set up list dragging
+            listElement.addEventListener('dragstart', handleListDragStart);
+            listElement.addEventListener('dragend', handleListDragEnd);
+            
+            return listElement;
         }
         
-        // Remove the item from the deleted items array
-        deletedItems.splice(index, 1);
+        function createCardElement(card) {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card';
+            cardElement.setAttribute('data-card-id', card.id);
+            cardElement.setAttribute('draggable', 'true');
+            cardElement.setAttribute('data-due-date', card.dueDate || '');
+            cardElement.setAttribute('data-label-ids', card.labelIds ? card.labelIds.join(',') : '');
+            
+            // Check if card is completed
+            if (card.completed) {
+                cardElement.classList.add('completed');
+            }
+            
+            const cardLabels = card.labelIds ? card.labelIds.map(id => {
+                const label = labels.find(l => l.id === id);
+                return label ? `
+                    <span class="label" style="background: ${label.color};">${label.name}</span>
+                ` : '';
+            }).join('') : '';
+            
+            const dueDateHTML = card.dueDate ? `
+                <span class="due-date">
+                    <i data-feather="calendar" class="w-3 h-3"></i> ${formatDate(card.dueDate)}
+                </span>
+            ` : '';
+            
+            cardElement.innerHTML = `
+                <div class="card-checkbox ${card.completed ? 'checked' : ''}" data-card-id="${card.id}"></div>
+                <div class="card-content-container" style="flex: 1;">
+                    <div class="card-dropdown">
+                        <button class="btn-icon card-options-btn">
+                            <i data-feather="more-horizontal" class="w-4 h-4"></i>
+                        </button>
+                        <div class="card-dropdown-content">
+                            <button class="edit-card-btn">
+                                <i data-feather="edit-2" class="w-4 h-4"></i> Edit
+                            </button>
+                            <button class="delete-card-btn">
+                                <i data-feather="trash-2" class="w-4 h-4"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="font-medium">${card.title}</div>
+                        ${card.description ? `<div class="text-sm opacity-80 mt-1">${card.description}</div>` : ''}
+                    </div>
+                    <div class="card-meta">
+                        <div class="card-labels">
+                            ${cardLabels}
+                            ${dueDateHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Set up event listeners for the card
+            setupCardEventListeners(cardElement, card);
+            
+            return cardElement;
+        }
         
-        // Refresh the recycle bin modal
-        showRecycleBinModal();
-    }
-    
-    // NEW: Permanently delete an item
-    function deletePermanent(index) {
-        deletedItems.splice(index, 1);
-        showRecycleBinModal();
-    }
-    
-    // NEW: PWA functionality
-    function initPWA() {
-        // Register service worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                .then((registration) => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch((registrationError) => {
-                    console.log('SW registration failed: ', registrationError);
+        function setupCardEventListeners(card, cardData) {
+            const optionsBtn = card.querySelector('.card-options-btn');
+            const dropdown = card.querySelector('.card-dropdown');
+            
+            optionsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking elsewhere
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('show');
+                }
+            });
+            
+            // Edit card button
+            const editCardBtn = card.querySelector('.edit-card-btn');
+            editCardBtn.addEventListener('click', () => {
+                currentCard = card;
+                showCardOptionsModal(card);
+                dropdown.classList.remove('show');
+            });
+            
+            // Delete card button
+            const deleteCardBtn = card.querySelector('.delete-card-btn');
+            deleteCardBtn.addEventListener('click', () => {
+                showDeleteConfirmModal('card', card);
+                dropdown.classList.remove('show');
+            });
+            
+            // Clicking on the card opens the editor
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.card-dropdown') && !e.target.closest('.checklist-checkbox') && !e.target.closest('.card-checkbox')) {
+                    currentCard = card;
+                    showCardOptionsModal(card);
+                }
+            });
+            
+            // Card checkbox functionality
+            const cardCheckbox = card.querySelector('.card-checkbox');
+            cardCheckbox.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Toggle the checked state
+                const isChecked = !cardCheckbox.classList.contains('checked');
+                const cardId = card.getAttribute('data-card-id');
+                const listId = card.closest('.list').getAttribute('data-list-id');
+                
+                // Update in Firestore
+                db.collection('users').doc(currentUser.uid)
+                    .collection('boards').doc(currentBoardId)
+                    .collection('lists').doc(listId)
+                    .collection('cards').doc(cardId)
+                    .update({
+                        completed: isChecked
+                    })
+                    .then(() => {
+                        // Update UI after successful Firestore update
+                        cardCheckbox.classList.toggle('checked');
+                        card.classList.toggle('completed');
+                        
+                        // If checked, move to "Done" list if it exists
+                        if (isChecked) {
+                            const doneList = document.querySelector('.list:has(h3:contains("Done"))');
+                            if (doneList && !card.closest('.list').querySelector('h3').textContent.includes('Done')) {
+                                const listCards = doneList.querySelector('.list-cards');
+                                listCards.appendChild(card);
+                                
+                                // Update card's list reference in Firestore
+                                const newListId = doneList.getAttribute('data-list-id');
+                                
+                                db.collection('users').doc(currentUser.uid)
+                                    .collection('boards').doc(currentBoardId)
+                                    .collection('lists').doc(newListId)
+                                    .collection('cards').doc(cardId)
+                                    .update({
+                                        listId: newListId
+                                    }).catch(error => {
+                                        console.error("Error updating card list:", error);
+                                    });
+                                
+                                // Hide empty state if it exists
+                                const emptyState = listCards.querySelector('.empty-state');
+                                if (emptyState) {
+                                    emptyState.remove();
+                                }
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error updating card completion status:", error);
+                    });
+            });
+            
+            // Make the card draggable
+            card.addEventListener('dragstart', handleDragStart);
+            card.addEventListener('dragend', handleDragEnd);
+        }
+        
+        function getHeaderColor(bgColor) {
+            // Darken the color for the header
+            return bgColor === '#44444E' ? '#3A3A42' : 'rgba(0, 0, 0, 0.2)';
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function showAddCardForm(listElement) {
+            const addCardSection = listElement.querySelector('.add-card-section');
+            addCardSection.innerHTML = `
+                <div class="add-form">
+                    <textarea placeholder="Enter a title for this card..." autofocus></textarea>
+                    <div class="flex gap-2">
+                        <button class="btn btn-primary add-card-confirm">Add card</button>
+                        <button class="btn btn-secondary cancel-add-card">Cancel</button>
+                    </div>
+                </div>
+            `;
+            
+            const textarea = addCardSection.querySelector('textarea');
+            const addButton = addCardSection.querySelector('.add-card-confirm');
+            const cancelButton = addCardSection.querySelector('.cancel-add-card');
+            
+            addButton.addEventListener('click', () => {
+                const content = textarea.value.trim();
+                if (content) {
+                    addNewCard(listElement, content);
+                }
+            });
+            
+            cancelButton.addEventListener('click', () => {
+                renderAddCardButton(listElement);
+            });
+            
+            textarea.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    addButton.click();
+                }
+                
+                if (e.key === 'Escape') {
+                    cancelButton.click();
+                }
+            });
+        }
+        
+        function renderAddCardButton(listElement) {
+            const addCardSection = listElement.querySelector('.add-card-section');
+            addCardSection.innerHTML = `
+                <button class="btn btn-secondary w-full add-card-btn">
+                    <i data-feather="plus" class="w-4 h-4"></i> Add a card
+                </button>
+            `;
+            
+            feather.replace();
+            
+            const addCardBtn = addCardSection.querySelector('.add-card-btn');
+            addCardBtn.addEventListener('click', () => {
+                showAddCardForm(listElement);
+            });
+        }
+
+        function addNewCard(listElement, content) {
+            const listId = listElement.getAttribute('data-list-id');
+            const cardId = 'card-' + Date.now();
+            
+            // Add card to Firestore
+            db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(currentBoardId)
+                .collection('lists').doc(listId)
+                .collection('cards').doc(cardId)
+                .set({
+                    id: cardId,
+                    title: content,
+                    description: '',
+                    dueDate: '',
+                    labelIds: [],
+                    listId: listId,
+                    completed: false, // Add completed field with default value
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    console.log("Card added successfully");
+                }).catch((error) => {
+                    console.error("Error adding card:", error);
+                });
+            
+            // Return to "Add card" button
+            renderAddCardButton(listElement);
+        }
+        
+        function showListOptionsModal(listElement) {
+            const modal = document.getElementById('list-options-modal');
+            const titleInput = document.getElementById('list-title-input');
+            const title = listElement.querySelector('.list-header h3').textContent;
+            
+            titleInput.value = title;
+            
+            // Set current color as selected
+            const currentColor = listElement.style.backgroundColor;
+            document.querySelectorAll('#list-options-modal .color-option').forEach(option => {
+                if (option.getAttribute('data-color') === currentColor) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+            
+            // Add event listeners to color options
+            document.querySelectorAll('#list-options-modal .color-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('#list-options-modal .color-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                });
+            });
+            
+            // Save button
+            const saveBtn = document.getElementById('save-list-options');
+            saveBtn.onclick = () => {
+                const listId = listElement.getAttribute('data-list-id');
+                const newTitle = titleInput.value;
+                const selectedColor = document.querySelector('#list-options-modal .color-option.selected').getAttribute('data-color');
+                
+                // Update list in Firestore
+                db.collection('users').doc(currentUser.uid)
+                    .collection('boards').doc(currentBoardId)
+                    .collection('lists').doc(listId)
+                    .update({
+                        title: newTitle,
+                        color: selectedColor
+                    }).then(() => {
+                        console.log("List updated successfully");
+                        modal.style.display = 'none';
+                    }).catch((error) => {
+                        console.error("Error updating list:", error);
+                    });
+            };
+            
+            // Delete button
+            const deleteBtn = document.getElementById('delete-list-btn');
+            deleteBtn.onclick = () => {
+                showDeleteConfirmModal('list', listElement);
+                modal.style.display = 'none';
+            };
+            
+            modal.style.display = 'flex';
+        }
+        
+        function showCardOptionsModal(card) {
+            const modal = document.getElementById('card-options-modal');
+            const titleInput = document.getElementById('card-title-input');
+            const descriptionInput = document.getElementById('card-description-input');
+            const dueDateInput = document.getElementById('card-due-date');
+            
+            const title = card.querySelector('.font-medium').textContent;
+            const description = card.querySelector('.opacity-80') ? card.querySelector('.opacity-80').textContent : '';
+            const dueDate = card.getAttribute('data-due-date') || '';
+            const labelIds = card.getAttribute('data-label-ids') || '';
+            
+            titleInput.value = title;
+            descriptionInput.value = description;
+            dueDateInput.value = dueDate;
+            
+            // Render label options
+            renderLabelOptions(card, labelIds);
+            
+            // Save button
+            const saveBtn = document.getElementById('save-card-options');
+            saveBtn.onclick = () => {
+                const cardId = card.getAttribute('data-card-id');
+                const listId = card.closest('.list').getAttribute('data-list-id');
+                const newTitle = titleInput.value;
+                const newDescription = descriptionInput.value;
+                const newDueDate = dueDateInput.value;
+                
+                // Get selected label IDs
+                const selectedLabelIds = [];
+                document.querySelectorAll('.label-option-minimal.selected').forEach(option => {
+                    selectedLabelIds.push(option.getAttribute('data-label-id'));
+                });
+                
+                // Update card in Firestore
+                db.collection('users').doc(currentUser.uid)
+                    .collection('boards').doc(currentBoardId)
+                    .collection('lists').doc(listId)
+                    .collection('cards').doc(cardId)
+                    .update({
+                        title: newTitle,
+                        description: newDescription,
+                        dueDate: newDueDate,
+                        labelIds: selectedLabelIds
+                    }).then(() => {
+                        console.log("Card updated successfully");
+                        modal.style.display = 'none';
+                    }).catch((error) => {
+                        console.error("Error updating card:", error);
+                    });
+            };
+            
+            modal.style.display = 'flex';
+        }
+        
+        function renderLabelOptions(card, labelIds) {
+            const labelOptionsContainer = document.getElementById('label-options');
+            labelOptionsContainer.innerHTML = '';
+            
+            const cardLabelIds = labelIds ? labelIds.split(',') : [];
+            
+            labels.forEach(label => {
+                const isSelected = cardLabelIds.includes(label.id);
+                const labelEl = document.createElement('div');
+                labelEl.className = `label-option-minimal ${isSelected ? 'selected' : ''}`;
+                labelEl.setAttribute('data-label-id', label.id);
+                labelEl.innerHTML = `
+                    <span class="label-dot" style="background: ${label.color};"></span>
+                    <span>${label.name}</span>
+                `;
+                
+                labelEl.addEventListener('click', () => {
+                    labelEl.classList.toggle('selected');
+                });
+                
+                labelOptionsContainer.appendChild(labelEl);
+            });
+        }
+        
+        function updateCardLabels(card) {
+            const labelOptions = document.querySelectorAll('.label-option-minimal');
+            const selectedLabelIds = [];
+            
+            labelOptions.forEach(option => {
+                if (option.classList.contains('selected')) {
+                    selectedLabelIds.push(option.getAttribute('data-label-id'));
+                }
+            });
+            
+            card.setAttribute('data-label-ids', selectedLabelIds.join(','));
+            
+            // Update card display
+            const labelsContainer = card.querySelector('.card-labels');
+            const dueDateEl = card.querySelector('.due-date');
+            
+            // Clear existing labels (but keep due date)
+            Array.from(labelsContainer.children).forEach(child => {
+                if (!child.classList.contains('due-date')) {
+                    child.remove();
+                }
+            });
+            
+            // Add selected labels as text labels
+            selectedLabelIds.forEach(id => {
+                const label = labels.find(l => l.id === id);
+                if (label) {
+                    const labelEl = document.createElement('span');
+                    labelEl.className = 'label';
+                    labelEl.style.background = label.color;
+                    labelEl.textContent = label.name;
+                    
+                    if (dueDateEl) {
+                        labelsContainer.insertBefore(labelEl, dueDateEl);
+                    } else {
+                        labelsContainer.appendChild(labelEl);
+                    }
+                }
+            });
+        }
+        
+        function updateCardDueDate(card, dueDate) {
+            const labelsContainer = card.querySelector('.card-labels');
+            let dueDateEl = card.querySelector('.due-date');
+            
+            if (!dueDateEl) {
+                dueDateEl = document.createElement('span');
+                dueDateEl.className = 'due-date';
+                
+                const icon = document.createElement('i');
+                icon.setAttribute('data-feather', 'calendar');
+                icon.className = 'w-3 h-3';
+                dueDateEl.appendChild(icon);
+                
+                labelsContainer.appendChild(dueDateEl);
+                feather.replace();
+            }
+            
+            dueDateEl.innerHTML = `
+                <i data-feather="calendar" class="w-3 h-3"></i> ${formatDate(dueDate)}
+            `;
+            feather.replace();
+        }
+
+        function addNewList() {
+            const listId = 'list-' + Date.now();
+            const listTitle = 'New List';
+            const listColor = '#44444E';
+            
+            const listCollection = db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(currentBoardId)
+                .collection('lists');
+
+            // Get the current number of lists to set the order
+            listCollection.get().then(snapshot => {
+                const newOrder = snapshot.size;
+
+                // Add list to Firestore with the new 'order' field
+                listCollection.doc(listId).set({
+                    id: listId,
+                    title: listTitle,
+                    color: listColor,
+                    order: newOrder, // <-- MODIFIED
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    console.log("List added successfully");
+                }).catch((error) => {
+                    console.error("Error adding list:", error);
                 });
             });
         }
         
-        // Handle install prompt
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent the mini-infobar from appearing on mobile
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-            // Show the install button
-            installBtn.style.display = 'flex';
+        function showDeleteConfirmModal(type, element) {
+            const modal = document.getElementById('delete-confirm-modal');
+            const message = document.getElementById('delete-confirm-message');
+            const confirmBtn = document.getElementById('confirm-delete-btn');
             
-            installBtn.addEventListener('click', () => {
+            if (type === 'list') {
+                message.textContent = 'Are you sure you want to delete this list and all its cards?';
+                confirmBtn.onclick = () => {
+                    const listId = element.getAttribute('data-list-id');
+                    
+                    // Delete list from Firestore
+                    db.collection('users').doc(currentUser.uid)
+                        .collection('boards').doc(currentBoardId)
+                        .collection('lists').doc(listId)
+                        .delete().then(() => {
+                            console.log("List deleted successfully");
+                            modal.style.display = 'none';
+                        }).catch((error) => {
+                            console.error("Error deleting list:", error);
+                        });
+                };
+            } else if (type === 'card') {
+                message.textContent = 'Are you sure you want to delete this card?';
+                confirmBtn.onclick = () => {
+                    const cardId = element.getAttribute('data-card-id');
+                    const listId = element.closest('.list').getAttribute('data-list-id');
+                    
+                    // Delete card from Firestore
+                    db.collection('users').doc(currentUser.uid)
+                        .collection('boards').doc(currentBoardId)
+                        .collection('lists').doc(listId)
+                        .collection('cards').doc(cardId)
+                        .delete().then(() => {
+                            console.log("Card deleted successfully");
+                            modal.style.display = 'none';
+                        }).catch((error) => {
+                            console.error("Error deleting card:", error);
+                        });
+                };
+            } else if (type === 'label') {
+                message.textContent = 'Are you sure you want to delete this label? This will remove it from all cards.';
+                confirmBtn.onclick = () => {
+                    deleteLabel(element);
+                    modal.style.display = 'none';
+                };
+            } else if (type === 'board') {
+                message.textContent = 'Are you sure you want to delete this board and all its content?';
+                confirmBtn.onclick = () => {
+                    deleteBoard(element);
+                    modal.style.display = 'none';
+                };
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function checkEmptyList(list) {
+            const cardsContainer = list.querySelector('.list-cards');
+            if (cardsContainer.children.length === 0) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'empty-state';
+                emptyState.innerHTML = '<i data-feather="inbox" class="w-6 h-6 mx-auto mb-2"></i><p>No cards</p>';
+                cardsContainer.appendChild(emptyState);
+                feather.replace();
+            }
+        }
+        
+        function checkEmptyBoard() {
+            const board = document.getElementById('board');
+            if (board.children.length === 0) {
+                // Optionally add an empty board state
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('add-list-btn').addEventListener('click', addNewList);
+            
+            // Close modals
+            document.querySelectorAll('.close-modal').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.style.display = 'none';
+                    });
+                });
+            });
+            
+            // Click outside modals to close
+            window.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+            
+            // Manage labels button
+            document.getElementById('manage-labels-btn').addEventListener('click', showManageLabelsModal);
+            
+            // Add new label button in manage modal
+            document.getElementById('add-new-label-btn').addEventListener('click', () => {
+                document.getElementById('manage-labels-modal').style.display = 'none';
+                showAddLabelModal();
+            });
+
+            // Save new label button
+            document.getElementById('save-new-label').addEventListener('click', addNewLabel);
+            
+            // Save edit label button
+            document.getElementById('save-edit-label').addEventListener('click', saveEditedLabel);
+            
+            // Boards modal button
+            document.getElementById('boards-modal-btn').addEventListener('click', () => {
+                document.getElementById('boards-modal').style.display = 'flex';
+            });
+            
+            // Create board modal button
+            document.getElementById('create-board-modal-btn').addEventListener('click', () => {
+                document.getElementById('create-board-modal').style.display = 'flex';
+            });
+            
+            // Create new board button
+            document.getElementById('create-board-btn').addEventListener('click', createNewBoard);
+            
+            // Update board preview when title changes
+            document.getElementById('new-board-title').addEventListener('input', updateBoardPreview);
+            
+            // Color options for new board
+            document.querySelectorAll('#create-board-modal .color-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('#create-board-modal .color-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                    updateBoardPreview();
+                });
+            });
+            
+            // ESC key to close modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.style.display = 'none';
+                    });
+                }
+            });
+        }
+        
+        function setupBoardDragging() {
+            const board = document.getElementById('board');
+            
+            board.addEventListener('mousedown', (e) => {
+                // Only enable board dragging when clicking directly on the board, not on lists or cards
+                if (e.target === board) {
+                    isDragging = true;
+                    startX = e.pageX - board.offsetLeft;
+                    scrollLeft = board.scrollLeft;
+                    
+                    board.style.cursor = 'grabbing';
+                    board.style.userSelect = 'none';
+                }
+            });
+            
+            board.addEventListener('mouseleave', () => {
+                isDragging = false;
+                board.style.cursor = 'grab';
+                board.style.userSelect = 'auto';
+            });
+            
+            board.addEventListener('mouseup', () => {
+                isDragging = false;
+                board.style.cursor = 'grab';
+                board.style.userSelect = 'auto';
+            });
+            
+            board.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - board.offsetLeft;
+                const walkX = (x - startX) * 2;
+                board.scrollLeft = scrollLeft - walkX;
+            });
+        }
+        
+        function setupVerticalPageScrolling() {
+            document.addEventListener('mousedown', (e) => {
+                // Only start vertical scrolling with left mouse button
+                if (e.button === 0 && !e.target.closest('.card') && !e.target.closest('.list') && !e.target.closest('.modal')) {
+                    isVerticalScrolling = true;
+                    verticalScrollStartY = e.clientY;
+                    verticalScrollStartTop = window.scrollY;
+                    
+                    // Change cursor to indicate scrolling
+                    document.body.style.cursor = 'grabbing';
+                    document.body.style.userSelect = 'none';
+                }
+            });
+            
+            document.addEventListener('mouseup', () => {
+                isVerticalScrolling = false;
+                document.body.style.cursor = '';
+                document.body.style.userSelect = 'auto';
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (!isVerticalScrolling) return;
+                
+                e.preventDefault();
+                const deltaY = e.clientY - verticalScrollStartY;
+                window.scrollTo(0, verticalScrollStartTop - deltaY);
+            });
+            
+            // Stop vertical scrolling when mouse leaves the window
+            document.addEventListener('mouseleave', () => {
+                isVerticalScrolling = false;
+                document.body.style.cursor = '';
+                document.body.style.userSelect = 'auto';
+            });
+        }
+        
+        function setupContextMenu() {
+            const contextMenu = document.getElementById('context-menu');
+            
+            // Right-click to open context menu
+            document.addEventListener('contextmenu', (e) => {
+                if (e.target.closest('.card')) {
+                    e.preventDefault();
+                    currentCard = e.target.closest('.card');
+                    
+                    // Position the context menu at the cursor position
+                    contextMenu.style.display = 'block';
+                    contextMenu.style.left = `${e.pageX}px`;
+                    contextMenu.style.top = `${e.pageY}px`;
+                    
+                    // Add event listeners to context menu buttons
+                    const editBtn = contextMenu.querySelector('.edit-card-btn');
+                    const deleteBtn = contextMenu.querySelector('.delete-card-btn');
+                    
+                    editBtn.onclick = () => {
+                        contextMenu.style.display = 'none';
+                        showCardOptionsModal(currentCard);
+                    };
+                    
+                    deleteBtn.onclick = () => {
+                        contextMenu.style.display = 'none';
+                        showDeleteConfirmModal('card', currentCard);
+                    };
+                }
+            });
+            
+            // Click anywhere to close context menu
+            document.addEventListener('click', () => {
+                contextMenu.style.display = 'none';
+            });
+        }
+        
+        function showAddLabelModal() {
+            document.getElementById('add-label-modal').style.display = 'flex';
+            
+            // Set up color options
+            document.querySelectorAll('#add-label-modal .color-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('#add-label-modal .color-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                });
+            });
+        }
+        
+        function showEditLabelModal(label) {
+            currentEditingLabel = label;
+            const modal = document.getElementById('edit-label-modal');
+            const nameInput = document.getElementById('edit-label-name-input');
+            
+            nameInput.value = label.name;
+            
+            // Set current color as selected
+            document.querySelectorAll('#edit-label-color-options .color-option').forEach(option => {
+                if (option.getAttribute('data-color') === label.color) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+            
+            // Add event listeners to color options
+            document.querySelectorAll('#edit-label-color-options .color-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('#edit-label-color-options .color-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                });
+            });
+            
+            modal.style.display = 'flex';
+        }
+        
+        function saveEditedLabel() {
+            if (!currentEditingLabel) return;
+            
+            const nameInput = document.getElementById('edit-label-name-input');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                alert('Please enter a label name');
+                return;
+            }
+            
+            const color = document.querySelector('#edit-label-color-options .color-option.selected').getAttribute('data-color');
+            
+            // Update the label in Firestore
+            db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(currentBoardId)
+                .collection('labels').doc(currentEditingLabel.id)
+                .update({
+                    name: name,
+                    color: color
+                }).then(() => {
+                    console.log("Label updated successfully");
+                    document.getElementById('edit-label-modal').style.display = 'none';
+                }).catch((error) => {
+                    console.error("Error updating label:", error);
+                });
+        }
+        
+        function updateCardsWithLabel(labelId) {
+            const label = labels.find(l => l.id === labelId);
+            if (!label) return;
+            
+            document.querySelectorAll('.card').forEach(card => {
+                const labelIds = card.getAttribute('data-label-ids');
+                if (labelIds && labelIds.includes(labelId)) {
+                    // Update the label display
+                    const labelsContainer = card.querySelector('.card-labels');
+                    const labelEl = labelsContainer.querySelector(`.label[style*="${label.color}"]`);
+                    
+                    if (labelEl) {
+                        labelEl.textContent = label.name;
+                        labelEl.style.background = label.color;
+                    }
+                    
+                    // Refresh the label options in the card modal if it's open
+                    if (currentCard && currentCard.getAttribute('data-card-id') === card.getAttribute('data-card-id')) {
+                        renderLabelOptions(currentCard, currentCard.getAttribute('data-label-ids'));
+                    }
+                }
+            });
+        }
+        
+        function deleteLabel(labelId) {
+            // Remove the label from Firestore
+            db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(currentBoardId)
+                .collection('labels').doc(labelId)
+                .delete().then(() => {
+                    console.log("Label deleted successfully");
+                }).catch((error) => {
+                    console.error("Error deleting label:", error);
+                });
+        }
+        
+        function showManageLabelsModal() {
+            const modal = document.getElementById('manage-labels-modal');
+            const labelsList = document.getElementById('labels-list');
+            labelsList.innerHTML = '';
+            
+            // Create label management UI for each label
+            labels.forEach(label => {
+                const labelEl = document.createElement('div');
+                labelEl.className = 'label-management';
+                labelEl.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="color-dot w-4 h-4 rounded-full" style="background: ${label.color};"></span>
+                        <span>${label.name}</span>
+                    </div>
+                    <div class="label-actions">
+                        <button class="btn-icon edit-label-btn" data-label-id="${label.id}">
+                            <i data-feather="edit-2" class="w-4 h-4"></i>
+                        </button>
+                        <button class="btn-icon delete-label-btn" data-label-id="${label.id}">
+                            <i data-feather="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                
+                labelsList.appendChild(labelEl);
+            });
+            
+            feather.replace();
+            
+            // Add event listeners for edit and delete buttons
+            document.querySelectorAll('.edit-label-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const labelId = e.currentTarget.getAttribute('data-label-id');
+                    const label = labels.find(l => l.id === labelId);
+                    if (label) {
+                        // Close the manage labels modal first
+                        document.getElementById('manage-labels-modal').style.display = 'none';
+                        showEditLabelModal(label);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-label-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const labelId = e.currentTarget.getAttribute('data-label-id');
+                    // Close the manage labels modal first
+                    document.getElementById('manage-labels-modal').style.display = 'none';
+                    showDeleteConfirmModal('label', labelId);
+                });
+            });
+            
+            modal.style.display = 'flex';
+        }
+        
+        function addNewLabel() {
+            const nameInput = document.getElementById('label-name-input');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                alert('Please enter a label name');
+                return;
+            }
+            
+            const color = document.querySelector('#add-label-modal .color-option.selected').getAttribute('data-color');
+            const newLabelId = 'label-' + Date.now();
+            
+            // Add label to Firestore
+            db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(currentBoardId)
+                .collection('labels').doc(newLabelId)
+                .set({
+                    id: newLabelId,
+                    name: name,
+                    color: color,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    console.log("Label added successfully");
+                    document.getElementById('add-label-modal').style.display = 'none';
+                    nameInput.value = '';
+                }).catch((error) => {
+                    console.error("Error adding label:", error);
+                });
+        }
+
+        function attachDragAndDrop() {
+            const cards = document.querySelectorAll('.card');
+            const lists = document.querySelectorAll('.list-cards');
+            
+            cards.forEach(card => {
+                card.addEventListener('dragstart', handleDragStart);
+                card.addEventListener('dragend', handleDragEnd);
+            });
+            
+            lists.forEach(list => {
+                list.addEventListener('dragover', handleDragOver);
+                list.addEventListener('dragenter', handleDragEnter);
+                list.addEventListener('dragleave', handleDragLeave);
+                list.addEventListener('drop', handleDrop);
+            });
+        }
+        
+        function setupListDragAndDrop() {
+            const board = document.getElementById('board');
+            const lists = document.querySelectorAll('.list');
+            
+            lists.forEach(list => {
+                list.addEventListener('dragover', handleListDragOver);
+                list.addEventListener('dragenter', handleListDragEnter);
+                list.addEventListener('dragleave', handleListDragLeave);
+                list.addEventListener('drop', handleListDrop);
+            });
+            
+            board.addEventListener('dragover', handleListDragOver);
+            board.addEventListener('drop', handleListDrop);
+        }
+
+        function handleDragStart(e) {
+            // Store the original list ID for checking empty state later
+            const originListId = this.closest('.list').getAttribute('data-list-id');
+            e.dataTransfer.setData('origin-list-id', originListId);
+            
+            // Stop event from bubbling to prevent list drag start
+            e.stopPropagation();
+            this.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', this.getAttribute('data-card-id'));
+            e.dataTransfer.setData('type', 'card');
+        }
+
+        function handleDragEnd(e) {
+            // Stop event from bubbling to prevent list drag end
+            e.stopPropagation();
+            this.classList.remove('dragging');
+            
+            // Remove drag-over class from all lists
+            document.querySelectorAll('.list-cards').forEach(list => {
+                list.classList.remove('drag-over');
+            });
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDragEnter(e) {
+            e.preventDefault();
+            this.classList.add('drag-over');
+        }
+
+        function handleDragLeave() {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            const type = e.dataTransfer.getData('type');
+            if (type !== 'card') return;
+            
+            const cardId = e.dataTransfer.getData('text/plain');
+            const card = document.querySelector(`[data-card-id="${cardId}"]`);
+            const originListId = e.dataTransfer.getData('origin-list-id');
+            const originList = document.querySelector(`[data-list-id="${originListId}"]`);
+            const targetListId = this.closest('.list').getAttribute('data-list-id');
+            
+            if (card && this !== card.parentNode) {
+                this.appendChild(card);
+                
+                // FIXED: Properly update card's list reference in Firestore
+                // Get the card reference from the original list
+                const cardRef = db.collection('users').doc(currentUser.uid)
+                    .collection('boards').doc(currentBoardId)
+                    .collection('lists').doc(originListId)
+                    .collection('cards').doc(cardId);
+                
+                // Get the card data
+                cardRef.get().then((doc) => {
+                    if (doc.exists) {
+                        const cardData = doc.data();
+                        
+                        // Delete the card from the original list
+                        cardRef.delete().then(() => {
+                            // Add the card to the new list with updated listId
+                            db.collection('users').doc(currentUser.uid)
+                                .collection('boards').doc(currentBoardId)
+                                .collection('lists').doc(targetListId)
+                                .collection('cards').doc(cardId)
+                                .set({
+                                    ...cardData,
+                                    listId: targetListId
+                                }).then(() => {
+                                    console.log("Card moved successfully");
+                                }).catch((error) => {
+                                    console.error("Error adding card to new list:", error);
+                                });
+                        }).catch((error) => {
+                            console.error("Error deleting card from old list:", error);
+                        });
+                    }
+                }).catch((error) => {
+                    console.error("Error getting card data:", error);
+                });
+                
+                // Hide empty state if it exists
+                const emptyState = this.querySelector('.empty-state');
+                if (emptyState) {
+                    emptyState.remove();
+                }
+                
+                // Check if the original list is now empty
+                if (originList && originListId !== targetListId) {
+                    checkEmptyList(originList);
+                }
+            }
+        }
+        
+        function handleListDragStart(e) {
+            // Only start list drag if not dragging a card
+            if (e.target.closest('.card')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            isDraggingList = true;
+            draggedList = this;
+            this.classList.add('list-dragging');
+            e.dataTransfer.setData('text/plain', this.getAttribute('data-list-id'));
+            e.dataTransfer.setData('type', 'list');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleListDragEnd() {
+            isDraggingList = false;
+            draggedList = null;
+            document.querySelectorAll('.list').forEach(list => {
+                list.classList.remove('list-dragging');
+                list.classList.remove('list-drag-over');
+            });
+        }
+
+        function handleListDragOver(e) {
+            if (!isDraggingList) return;
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleListDragEnter(e) {
+            if (!isDraggingList || this === draggedList) return;
+            e.preventDefault();
+            this.classList.add('list-drag-over');
+        }
+
+        function handleListDragLeave() {
+            this.classList.remove('list-drag-over');
+        }
+
+        function handleListDrop(e) {
+            if (!isDraggingList) return;
+            e.preventDefault();
+            
+            const type = e.dataTransfer.getData('type');
+            if (type !== 'list') return;
+            
+            const listId = e.dataTransfer.getData('text/plain');
+            const list = document.querySelector(`[data-list-id="${listId}"]`);
+            
+            if (list && this !== list) {
+                const board = document.getElementById('board');
+                const afterElement = getDragAfterElement(board, e.clientX);
+                
+                if (afterElement) {
+                    board.insertBefore(list, afterElement);
+                } else {
+                    board.appendChild(list);
+                }
+
+                // ---- START: MODIFIED CODE TO SAVE ORDER ----
+                const batch = db.batch();
+                const listsInOrder = board.querySelectorAll('.list');
+                
+                listsInOrder.forEach((listEl, index) => {
+                    const currentListId = listEl.getAttribute('data-list-id');
+                    const listRef = db.collection('users').doc(currentUser.uid)
+                        .collection('boards').doc(currentBoardId)
+                        .collection('lists').doc(currentListId);
+                    
+                    batch.update(listRef, { order: index });
+                });
+                
+                batch.commit().then(() => {
+                    console.log('List order updated successfully.');
+                }).catch(error => {
+                    console.error('Error updating list order: ', error);
+                });
+                // ---- END: MODIFIED CODE TO SAVE ORDER ----
+            }
+            
+            document.querySelectorAll('.list').forEach(list => {
+                list.classList.remove('list-drag-over');
+            });
+        }
+        
+        function getDragAfterElement(container, x) {
+            const draggableElements = [...container.querySelectorAll('.list:not(.list-dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = x - box.left - box.width / 2;
+                
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+        
+        // NEW: Boards modal functions
+        function renderBoardsModal() {
+            const boardsGrid = document.getElementById('boards-grid');
+            boardsGrid.innerHTML = '';
+            
+            boards.forEach(board => {
+                const boardCard = document.createElement('div');
+                boardCard.className = 'board-card';
+                boardCard.style.backgroundColor = board.color;
+                boardCard.setAttribute('data-board-id', board.id);
+                
+                boardCard.innerHTML = `
+                    <div class="board-card-title">${board.title}</div>
+                    <div class="board-card-star ${board.starred ? 'starred' : ''}" data-board-id="${board.id}">
+                        <i data-feather="${board.starred ? 'star' : 'star'}" class="w-4 h-4"></i>
+                    </div>
+                    <div class="board-card-delete" data-board-id="${board.id}">
+                        <i data-feather="trash-2" class="w-4 h-4"></i>
+                    </div>
+                `;
+                
+                boardsGrid.appendChild(boardCard);
+                
+                // Add event listener for star
+                const star = boardCard.querySelector('.board-card-star');
+                star.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleBoardStar(board.id);
+                });
+                
+                // Add event listener for delete
+                const deleteBtn = boardCard.querySelector('.board-card-delete');
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showDeleteConfirmModal('board', board.id);
+                });
+                
+                // Add event listener for board selection
+                boardCard.addEventListener('click', () => {
+                    switchBoard(board.id);
+                });
+            });
+            
+            // Add create board card
+            const createBoardCard = document.createElement('div');
+            createBoardCard.className = 'board-card create-board-card';
+            createBoardCard.innerHTML = `
+                <i data-feather="plus" class="w-6 h-6"></i>
+                <div>Create new board</div>
+            `;
+            
+            createBoardCard.addEventListener('click', () => {
+                document.getElementById('create-board-modal').style.display = 'flex';
+            });
+            
+            boardsGrid.appendChild(createBoardCard);
+            
+            feather.replace();
+        }
+        
+        function toggleBoardStar(boardId) {
+            const board = boards.find(b => b.id === boardId);
+            if (board) {
+                const newStarredStatus = !board.starred;
+                
+                // Update board in Firestore
+                db.collection('users').doc(currentUser.uid)
+                    .collection('boards').doc(boardId)
+                    .update({
+                        starred: newStarredStatus
+                    }).then(() => {
+                        console.log("Board starred status updated");
+                    }).catch((error) => {
+                        console.error("Error updating board star:", error);
+                    });
+            }
+        }
+        
+        function switchBoard(boardId) {
+            currentBoardId = boardId;
+            document.getElementById('boards-modal').style.display = 'none';
+            
+            // Set up listeners for the new board
+            setupFirestoreListeners();
+        }
+        
+        function deleteBoard(boardId) {
+            // Delete board from Firestore
+            db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(boardId)
+                .delete().then(() => {
+                    console.log("Board deleted successfully");
+                    
+                    // If we deleted the current board, switch to the first available board
+                    if (currentBoardId === boardId) {
+                        currentBoardId = boards.length > 1 ? boards.find(b => b.id !== boardId).id : 'default-board';
+                        setupFirestoreListeners();
+                    }
+                }).catch((error) => {
+                    console.error("Error deleting board:", error);
+                });
+        }
+        
+        function updateBoardPreview() {
+            const titleInput = document.getElementById('new-board-title');
+            const preview = document.getElementById('create-board-preview');
+            const selectedColor = document.querySelector('#create-board-modal .color-option.selected').getAttribute('data-color');
+            
+            preview.textContent = titleInput.value || 'Board Title';
+            preview.style.backgroundColor = selectedColor;
+        }
+        
+        function createNewBoard() {
+            const titleInput = document.getElementById('new-board-title');
+            const title = titleInput.value.trim();
+            
+            if (!title) {
+                alert('Please enter a board title');
+                return;
+            }
+            
+            const selectedColor = document.querySelector('#create-board-modal .color-option.selected').getAttribute('data-color');
+            const newBoardId = 'board-' + Date.now();
+            
+            // Add board to Firestore
+            db.collection('users').doc(currentUser.uid)
+                .collection('boards').doc(newBoardId)
+                .set({
+                    id: newBoardId,
+                    title: title,
+                    color: selectedColor,
+                    starred: false,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    console.log("Board created successfully");
+                    
+                    // Reset form
+                    titleInput.value = '';
+                    document.querySelector('#create-board-modal .color-option').classList.add('selected');
+                    updateBoardPreview();
+                    
+                    // Close the modal
+                    document.getElementById('create-board-modal').style.display = 'none';
+                }).catch((error) => {
+                    console.error("Error creating board:", error);
+                });
+        }
+        
+        // NEW: Setup trash bin for recycle functionality
+        function setupTrashBin() {
+            const trashBin = document.getElementById('trash-bin');
+            
+            // Make the trash bin a drop target
+            trashBin.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                trashBin.classList.add('drag-over');
+            });
+            
+            trashBin.addEventListener('dragenter', (e) => {
+                e.preventDefault();
+                trashBin.classList.add('drag-over');
+            });
+            
+            trashBin.addEventListener('dragleave', () => {
+                trashBin.classList.remove('drag-over');
+            });
+            
+            trashBin.addEventListener('drop', (e) => {
+                e.preventDefault();
+                trashBin.classList.remove('drag-over');
+                
+                const type = e.dataTransfer.getData('type');
+                const id = e.dataTransfer.getData('text/plain');
+                
+                if (type === 'card') {
+                    const card = document.querySelector(`[data-card-id="${id}"]`);
+                    if (card) {
+                        showDeleteConfirmModal('card', card);
+                    }
+                } else if (type === 'list') {
+                    const list = document.querySelector(`[data-list-id="${id}"]`);
+                    if (list) {
+                        showDeleteConfirmModal('list', list);
+                    }
+                }
+            });
+            
+            // Add click event to show recycle bin modal
+            trashBin.addEventListener('click', () => {
+                showRecycleBinModal();
+            });
+        }
+        
+        // NEW: Show recycle bin modal with deleted items
+        function showRecycleBinModal() {
+            const modal = document.getElementById('recycle-bin-modal');
+            const content = document.getElementById('recycle-bin-content');
+            
+            if (deletedItems.length === 0) {
+                content.innerHTML = `
+                    <div class="empty-recycle">
+                        <i data-feather="inbox" class="w-12 h-12 mx-auto"></i>
+                        <p>Your recycle bin is empty</p>
+                </div>
+                `;
+            } else {
+                content.innerHTML = '';
+                
+                deletedItems.forEach((item, index) => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'recycle-item';
+                    itemEl.innerHTML = `
+                        <div class="recycle-item-info">
+                            <div class="recycle-item-type">${item.type === 'card' ? 'Card' : 'List'}</div>
+                            <div class="recycle-item-name">${item.title}</div>
+                            <div class="recycle-item-date">Deleted: ${formatDateTime(item.deletedAt)}</div>
+                            ${item.type === 'card' ? `<div class="recycle-item-date">From: ${item.listTitle}</div>` : ''}
+                        </div>
+                        <div class="recycle-item-actions">
+                            <button class="btn-icon restore-item" data-index="${index}">
+                                <i data-feather="rotate-ccw" class="w-4 h-4"></i>
+                            </button>
+                            <button class="btn-icon delete-permanent" data-index="${index}">
+                                <i data-feather="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    content.appendChild(itemEl);
+                });
+                
+                // Add event listeners for restore and permanent delete buttons
+                document.querySelectorAll('.restore-item').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.currentTarget.getAttribute('data-index');
+                        restoreItem(index);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-permanent').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.currentTarget.getAttribute('data-index');
+                        deletePermanent(index);
+                    });
+                });
+            }
+            
+            feather.replace();
+            modal.style.display = 'flex';
+        }
+        
+        // NEW: Format date and time for display
+        function formatDateTime(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // NEW: Restore item from recycle bin
+        function restoreItem(index) {
+            const item = deletedItems[index];
+            
+            if (item.type === 'card') {
+                // Find the list to restore the card to
+                const list = document.querySelector(`[data-list-id="${item.listId}"]`);
+                if (list) {
+                    const cardsContainer = list.querySelector('.list-cards');
+                    
+                    // Remove empty state if it exists
+                    const emptyState = cardsContainer.querySelector('.empty-state');
+                    if (emptyState) {
+                        emptyState.remove();
+                    }
+                    
+                    // Create a temporary container and parse the HTML string
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = item.html;
+                    const cardEl = tempDiv.firstElementChild;
+                    
+                    // Set up event listeners for the restored card
+                    setupCardEventListeners(cardEl);
+                    
+                    // Make the card draggable
+                    cardEl.addEventListener('dragstart', handleDragStart);
+                    cardEl.addEventListener('dragend', handleDragEnd);
+                    
+                    cardsContainer.appendChild(cardEl);
+                    
+                    // Add card back to Firestore
+                    db.collection('users').doc(currentUser.uid)
+                        .collection('boards').doc(currentBoardId)
+                        .collection('lists').doc(item.listId)
+                        .collection('cards').doc(item.id)
+                        .set({
+                            id: item.id,
+                            title: item.title,
+                            description: item.description || '',
+                            dueDate: item.dueDate || '',
+                            labelIds: item.labelIds || [],
+                            listId: item.listId,
+                            completed: item.completed || false, // Include completed status
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        }).then(() => {
+                            console.log("Card restored successfully");
+                        }).catch((error) => {
+                            console.error("Error restoring card:", error);
+                        });
+                    
+                    // Replace icons
+                    feather.replace();
+                }
+            } else if (item.type === 'list') {
+                // Restore the list to the board
+                const board = document.getElementById('board');
+                
+                // Create a temporary container and parse the HTML string
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = item.html;
+                const listEl = tempDiv.firstElementChild;
+                
+                board.appendChild(listEl);
+                
+                // Add list back to Firestore
+                db.collection('users').doc(currentUser.uid)
+                    .collection('boards').doc(currentBoardId)
+                    .collection('lists').doc(item.id)
+                    .set({
+                        id: item.id,
+                        title: item.title,
+                        color: item.color || '#44444E',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }).then(() => {
+                        console.log("List restored successfully");
+                    }).catch((error) => {
+                        console.error("Error restoring list:", error);
+                    });
+                
+                // Set up event listeners for the restored list
+                const addCardBtn = listEl.querySelector('.add-card-btn');
+                addCardBtn.addEventListener('click', () => {
+                    showAddCardForm(listEl);
+                });
+                
+                // Set up list dragging
+                listEl.addEventListener('dragstart', handleListDragStart);
+                listEl.addEventListener('dragend', handleListDragEnd);
+                
+                // Replace icons
+                feather.replace();
+                
+                // Set up dropdown for the restored list
+                const dropdownBtn = listEl.querySelector('.list-options-btn');
+                const dropdown = listEl.querySelector('.dropdown');
+                
+                dropdownBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('show');
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', (e) => {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+                
+                // Edit list button
+                const editListBtn = listEl.querySelector('.edit-list-btn');
+                editListBtn.addEventListener('click', () => {
+                    currentList = listEl;
+                    showListOptionsModal(listEl);
+                    dropdown.classList.remove('show');
+                });
+                
+                // Delete list button
+                const deleteListBtn = listEl.querySelector('.delete-list-btn');
+                deleteListBtn.addEventListener('click', () => {
+                    showDeleteConfirmModal('list', listEl);
+                    dropdown.classList.remove('show');
+                });
+                
+                // Make the list a drop target
+                const listCards = listEl.querySelector('.list-cards');
+                listCards.addEventListener('dragover', handleDragOver);
+                listCards.addEventListener('dragenter', handleDragEnter);
+                listCards.addEventListener('dragleave', handleDragLeave);
+                listCards.addEventListener('drop', handleDrop);
+            }
+            
+            // Remove the item from the deleted items array
+            deletedItems.splice(index, 1);
+            
+            // Refresh the recycle bin modal
+            showRecycleBinModal();
+        }
+        
+        // NEW: Permanently delete an item
+        function deletePermanent(index) {
+            deletedItems.splice(index, 1);
+            showRecycleBinModal();
+        }
+        
+        // NEW: PWA functionality
+        function initPWA() {
+            // Register service worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+                });
+            }
+            
+            // Handle install prompt
+            let deferredPrompt;
+            const installBtn = document.getElementById('installBtn');
+            
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent the mini-infobar from appearing on mobile
+                e.preventDefault();
+                // Stash the event so it can be triggered later
+                deferredPrompt = e;
+                // Show the install button
+                installBtn.style.display = 'flex';
+                
+                installBtn.addEventListener('click', () => {
+                    // Hide the install button
+                    installBtn.style.display = 'none';
+                    // Show the install prompt
+                    deferredPrompt.prompt();
+                    // Wait for the user to respond to the prompt
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the install prompt');
+                        } else {
+                            console.log('User dismissed the install prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            });
+            
+            window.addEventListener('appinstalled', () => {
                 // Hide the install button
                 installBtn.style.display = 'none';
-                // Show the install prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                    deferredPrompt = null;
-                });
+                // Clear the deferredPrompt so it can be garbage collected
+                deferredPrompt = null;
+                console.log('PWA was installed');
             });
-        });
-        
-        window.addEventListener('appinstalled', () => {
-            // Hide the install button
-            installBtn.style.display = 'none';
-            // Clear the deferredPrompt so it can be garbage collected
-            deferredPrompt = null;
-            console.log('PWA was installed');
-        });
-        
-        // Check if the app is running in standalone mode
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            console.log('Running in standalone mode');
-            installBtn.style.display = 'none';
+            
+            // Check if the app is running in standalone mode
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('Running in standalone mode');
+                installBtn.style.display = 'none';
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>
-
